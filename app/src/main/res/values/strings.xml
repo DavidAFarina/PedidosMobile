@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Pedidos Mobile</string>
+    <string name="titleDialog">Acesso Restrito</string>
+    <string name="acesso">Acessar Pedidos Mobile</string>
+    <string name="positive">Ok</string>
+    <string name="negative">Cancelar</string>
+    <string name="login">Login</string>
+    <string name="edtSenha">Senha</string>
+    <string name="loginFail">Dados inválidos</string>
+    <string name="loginCancel">Logins Cancelado</string>
+    <string name="loginOK">Você está logado!</string>
+</resources>
