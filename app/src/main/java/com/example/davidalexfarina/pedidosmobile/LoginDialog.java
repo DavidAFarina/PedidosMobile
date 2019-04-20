@@ -47,7 +47,7 @@ public class LoginDialog extends AppCompatDialogFragment implements DialogInterf
             String senha = edtSenha.getText().toString();
 
             if(login.equals("admin")&&senha.equals("admin")){
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                Intent intent = new Intent(getActivity(), MesasActivity.class);
                 startActivity(intent);
                 Toast.makeText(getActivity(), R.string.loginOK, Toast.LENGTH_LONG).show();;
 

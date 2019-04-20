@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MesasActivity"
+    android:orientation="vertical"
+    android:layout_margin="2dp"
+    android:background="@android:color/holo_red_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btMesa1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 1"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 2"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 3"
+            android:onClick="abrirPedidosDaMesa"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF4500">
+        <Button
+            android:id="@+id/btMesa4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 4"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 5"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 6"
+            android:onClick="abrirPedidosDaMesa"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btMesa7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 7"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 8"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 9"
+            android:onClick="abrirPedidosDaMesa"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF4500">
+        <Button
+            android:id="@+id/btMesa10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 10"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 11"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 12"
+            android:onClick="abrirPedidosDaMesa"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btMesa13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 13"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 14"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 15"
+            android:onClick="abrirPedidosDaMesa"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF4500">
+        <Button
+            android:id="@+id/btMesa16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 16"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 17"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 18"
+            android:onClick="abrirPedidosDaMesa"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btMesa19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 19"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 20"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 21"
+            android:onClick="abrirPedidosDaMesa"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF4500">
+        <Button
+            android:id="@+id/btMesa22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 22"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 23"
+            android:onClick="abrirPedidosDaMesa"
+            />
+        <Button
+            android:id="@+id/btMesa24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mesa 24"
+            android:onClick="abrirPedidosDaMesa"
+            />
+    </LinearLayout>
+
+</LinearLayout>
