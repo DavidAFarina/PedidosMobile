@@ -23,6 +23,8 @@
         </activity>
         <activity android:name=".MesasActivity" />
         <activity android:name=".PedidoDaMesaActivity" />
+        <activity android:name=".BebidasAdapter" />
+        <activity android:name=".PorcaoAdapters"></activity>
     </application>
 
 </manifest>

@@ -14,27 +14,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        >
 
         <Button
             android:id="@+id/btnPizzas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="Pratos"
+            android:text="Pizzas"
+            android:onClick="abrirListaPizzas"
             />
         <Button
             android:id="@+id/btnPorcoes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Porções"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:onClick="abrirListaPorcoes"/>
         <Button
             android:id="@+id/btnBebidas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bebidas"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:onClick="abrirListaBebidas"/>
     </LinearLayout>
 
     <LinearLayout
