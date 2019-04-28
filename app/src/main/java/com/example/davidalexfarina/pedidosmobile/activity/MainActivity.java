@@ -1,11 +1,12 @@
-package com.example.davidalexfarina.pedidosmobile;
+package com.example.davidalexfarina.pedidosmobile.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.Toast;
+
+import com.example.davidalexfarina.pedidosmobile.R;
+import com.example.davidalexfarina.pedidosmobile.dialog.LoginDialog;
 
 public class MainActivity extends AppCompatActivity {
 

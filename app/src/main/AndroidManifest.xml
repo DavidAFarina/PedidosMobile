@@ -14,17 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MesasActivity" />
-        <activity android:name=".PedidoDaMesaActivity" />
+        <activity android:name=".activity.MesasActivity" />
+        <activity android:name=".activity.PedidoDaMesaActivity" />
         <activity android:name=".BebidasAdapter" />
-        <activity android:name=".PorcaoAdapters"></activity>
+        <activity android:name=".PorcaoAdapters" />
+        <activity android:name=".adapter.ListaPedidoConfirmadoAdapters"></activity>
     </application>
 
 </manifest>

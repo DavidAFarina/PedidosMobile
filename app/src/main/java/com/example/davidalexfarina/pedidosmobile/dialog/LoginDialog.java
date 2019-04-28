@@ -1,4 +1,4 @@
-package com.example.davidalexfarina.pedidosmobile;
+package com.example.davidalexfarina.pedidosmobile.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.davidalexfarina.pedidosmobile.R;
+import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
 
 public class LoginDialog extends AppCompatDialogFragment implements DialogInterface.OnClickListener {
 

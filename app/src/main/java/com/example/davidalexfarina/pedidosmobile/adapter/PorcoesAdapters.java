@@ -1,4 +1,4 @@
-package com.example.davidalexfarina.pedidosmobile;
+package com.example.davidalexfarina.pedidosmobile.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,13 +8,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.davidalexfarina.pedidosmobile.R;
+import com.example.davidalexfarina.pedidosmobile.activity.PorcaoActivity;
+
 import java.util.List;
 
 public class PorcoesAdapters extends BaseAdapter {
     private Context context;
-    private List<Porcao> porcoes;
+    private List<PorcaoActivity> porcoes;
 
-    public PorcoesAdapters(Context context, List<Porcao> porcoes) {
+    public PorcoesAdapters(Context context, List<PorcaoActivity> porcoes) {
         this.context = context;
         this.porcoes = porcoes;
     }
@@ -44,12 +47,12 @@ public class PorcoesAdapters extends BaseAdapter {
         TextView txtValor = view.findViewById(R.id.txtValor);
 
 
-        Porcao porcao = porcoes.get(position);
-        imgPorcao.setImageResource(porcao.img);
-        txtNomePorcao.setText(porcao.nomePorcao);
-        txtDescricao.setText(porcao.descricao);
-        txtTamanho.setText(porcao.tamanho);
-        txtValor.setText(String.valueOf(porcao.valor));
+        PorcaoActivity porcaoActivity = porcoes.get(position);
+        imgPorcao.setImageResource(porcaoActivity.img);
+        txtNomePorcao.setText(porcaoActivity.nomePorcao);
+        txtDescricao.setText(porcaoActivity.descricao);
+        txtTamanho.setText(porcaoActivity.tamanho);
+        txtValor.setText(String.valueOf(porcaoActivity.valor));
 
 
         return view;

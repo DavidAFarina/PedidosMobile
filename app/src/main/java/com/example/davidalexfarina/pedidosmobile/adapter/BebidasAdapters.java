@@ -1,4 +1,4 @@
-package com.example.davidalexfarina.pedidosmobile;
+package com.example.davidalexfarina.pedidosmobile.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,25 +8,28 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.davidalexfarina.pedidosmobile.R;
+import com.example.davidalexfarina.pedidosmobile.activity.BebidaActivity;
+
 import java.util.List;
 
 public class BebidasAdapters extends BaseAdapter {
     private Context context;
-    private List<Bebida> bebidas;
+    private List<BebidaActivity> bebidaActivities;
 
-    public BebidasAdapters(Context context, List<Bebida> bebidas) {
+    public BebidasAdapters(Context context, List<BebidaActivity> bebidaActivities) {
         this.context = context;
-        this.bebidas = bebidas;
+        this.bebidaActivities = bebidaActivities;
     }
 
     @Override
     public int getCount() {
-        return bebidas.size();
+        return bebidaActivities.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return bebidas.get(position);
+        return bebidaActivities.get(position);
     }
 
     @Override
@@ -43,11 +46,11 @@ public class BebidasAdapters extends BaseAdapter {
         TextView txtValor = view.findViewById(R.id.txtValor);
 
 
-        Bebida bebida = bebidas.get(position);
-        imgBebida.setImageResource(bebida.img);
-        txtNomeBebida.setText(bebida.nomeBebida);
-        txtDescricao.setText(bebida.descricao);
-        txtValor.setText(String.valueOf(bebida.valor));
+        BebidaActivity bebidaActivity = bebidaActivities.get(position);
+        imgBebida.setImageResource(bebidaActivity.img);
+        txtNomeBebida.setText(bebidaActivity.nomeBebida);
+        txtDescricao.setText(bebidaActivity.descricao);
+        txtValor.setText(String.valueOf(bebidaActivity.valor));
 
 
         return view;
