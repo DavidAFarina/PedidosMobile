@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.davidalexfarina.pedidosmobile.R;
+import com.example.davidalexfarina.pedidosmobile.activity.MainActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
+import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
 
 public class LoginDialog extends AppCompatDialogFragment implements DialogInterface.OnClickListener {
 
@@ -50,8 +53,15 @@ public class LoginDialog extends AppCompatDialogFragment implements DialogInterf
             String senha = edtSenha.getText().toString();
 
             if(login.equals("admin")&&senha.equals("admin")){
+                Bundle parametro_garcom = new Bundle();
+                parametro_garcom.putString("paramNome", edtLogin.getText().toString());
                 Intent intent = new Intent(getActivity(), MesasActivity.class);
+                intent.putExtras(parametro_garcom);
                 startActivity(intent);
+
+
+               // Intent intent = new Intent(getActivity(), MesasActivity.class);
+               // startActivity(intent);
                 Toast.makeText(getActivity(), R.string.loginOK, Toast.LENGTH_LONG).show();;
 
             }else{
@@ -63,4 +73,5 @@ public class LoginDialog extends AppCompatDialogFragment implements DialogInterf
         }
 
     }
+
 }

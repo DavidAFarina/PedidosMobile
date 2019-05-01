@@ -25,6 +25,7 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
     private Button btnBebidas;
     private int listaCarregada = 1; //Variavel utilizada para validar a lista atual que esta selecionada e será utilizada no click do item da lista..
     private TextView txtMesaAutal; //Variavel que recebe recebera o valor da mesa que foi selecionada no onclick da tela acticity_mesas
+    private TextView txtNomeGarcom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +48,23 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         btnPorcoes = (Button) findViewById(R.id.btnPorcoes);
         btnBebidas = (Button) findViewById(R.id.btnBebidas);
 
+
         //Teste dentro do onCreate
         TextView txtMesaAutal = findViewById(R.id.txtMesaAutal);
+        TextView txtNomeGarcom = findViewById(R.id.txtNomeGarcom);
+        Intent intent = getIntent();
+        Bundle parametros = intent.getExtras();
 
-       Intent intent = getIntent();
-       Bundle parametros = intent.getExtras();
-       String param1 = parametros.getString("param1");
+        String numeroMesa = parametros.getString("numeroMesa");
+        String garcom = parametros.getString("garcom");
 
 
-        txtMesaAutal.setText(param1);
+
+       txtMesaAutal.setText(numeroMesa);
+       txtNomeGarcom.setText(garcom);
+
+
+
 
 
     }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.davidalexfarina.pedidosmobile.R;
@@ -37,6 +38,8 @@ public class MesasActivity extends AppCompatActivity {
     private Button btMesa22;
     private Button btMesa23;
     private Button btMesa24;
+    private TextView txtNomeGarcom;
+    private String temp;
 
 
 
@@ -71,7 +74,21 @@ public class MesasActivity extends AppCompatActivity {
         btMesa22 = (Button) findViewById(R.id.btMesa22);
         btMesa23 = (Button) findViewById(R.id.btMesa23);
         btMesa24 = (Button) findViewById(R.id.btMesa24);
+        TextView txtNomeGarcom = findViewById(R.id.txtNomeGarcom);
+
+        //Recebendo o nome do garçon e setando no xml das mesas
+        TextView txtNome = findViewById(R.id.txtNomeGarcom);
+
+        Intent intent = getIntent();
+        Bundle parametro_garcom = intent.getExtras();
+        String paramNome = parametro_garcom.getString("paramNome");
+
+
+        txtNomeGarcom.setText(paramNome);
+        temp = paramNome;
     }
+
+
     public void abrirPedidosDaMesa(View view){
 
       /* Intent intent = new Intent(this, PedidoDaMesaActivity.class);
@@ -80,124 +97,150 @@ public class MesasActivity extends AppCompatActivity {
         Bundle parametros = new Bundle();
 
         if(view.getId() == R.id.btMesa1){
-            parametros.putString("param1", btMesa1.getText().toString());
-            Intent intent = new Intent(this,PedidoDaMesaActivity.class);
+           parametros.putString("numeroMesa", btMesa1.getText().toString());
+           parametros.putString("garcom", temp);
+           Intent intent = new Intent(this,PedidoDaMesaActivity.class);
+
             intent.putExtras(parametros);
+
             startActivity(intent);
         }
         else if(view.getId() == R.id.btMesa2){
-            parametros.putString("param1", btMesa2.getText().toString());
+            parametros.putString("numeroMesa", btMesa2.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this,PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }
         else if(view.getId() == R.id.btMesa3){
-            parametros.putString("param1", btMesa3.getText().toString());
+            parametros.putString("numeroMesa", btMesa3.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this,PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa4){
-            parametros.putString("param1", btMesa4.getText().toString());
+            parametros.putString("numeroMesa", btMesa4.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this,PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa5){
-            parametros.putString("param1", btMesa5.getText().toString());
+            parametros.putString("numeroMesa", btMesa5.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this,PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa6){
-            parametros.putString("param1", btMesa6.getText().toString());
+            parametros.putString("numeroMesa", btMesa6.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this,PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa7){
-            parametros.putString("param1", btMesa7.getText().toString());
+            parametros.putString("numeroMesa", btMesa7.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this,PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa8){
-            parametros.putString("param1", btMesa8.getText().toString());
+            parametros.putString("numeroMesa", btMesa8.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this,PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa9){
-            parametros.putString("param1", btMesa9.getText().toString());
+            parametros.putString("numeroMesa", btMesa9.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this,PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa10){
-            parametros.putString("param1", btMesa10.getText().toString());
+            parametros.putString("numeroMesa", btMesa10.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this,PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
          }else if(view.getId() == R.id.btMesa11){
-            parametros.putString("param1", btMesa11.getText().toString());
+            parametros.putString("numeroMesa", btMesa11.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this,PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa12) {
-            parametros.putString("param1", btMesa12.getText().toString());
+            parametros.putString("numeroMesa", btMesa12.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa13) {
-            parametros.putString("param1", btMesa13.getText().toString());
+            parametros.putString("numeroMesa", btMesa13.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa14) {
-            parametros.putString("param1", btMesa14.getText().toString());
+            parametros.putString("numeroMesa", btMesa14.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa15) {
-            parametros.putString("param1", btMesa15.getText().toString());
+            parametros.putString("numeroMesa", btMesa15.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa16) {
-            parametros.putString("param1", btMesa16.getText().toString());
+            parametros.putString("numeroMesa", btMesa16.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa17) {
-            parametros.putString("param1", btMesa17.getText().toString());
+            parametros.putString("numeroMesa", btMesa17.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa18) {
-            parametros.putString("param1", btMesa18.getText().toString());
+            parametros.putString("numeroMesa", btMesa18.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa19) {
-            parametros.putString("param1", btMesa19.getText().toString());
+            parametros.putString("numeroMesa", btMesa19.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa20) {
-            parametros.putString("param1", btMesa20.getText().toString());
+            parametros.putString("numeroMesa", btMesa20.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa21) {
-            parametros.putString("param1", btMesa21.getText().toString());
+            parametros.putString("numeroMesa", btMesa21.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa22) {
-            parametros.putString("param1", btMesa22.getText().toString());
+            parametros.putString("numeroMesa", btMesa22.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa23) {
-            parametros.putString("param1", btMesa23.getText().toString());
+            parametros.putString("numeroMesa", btMesa23.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);
         }else if(view.getId() == R.id.btMesa24) {
-            parametros.putString("param1", btMesa24.getText().toString());
+            parametros.putString("numeroMesa", btMesa24.getText().toString());
+            parametros.putString("garcom", temp);
             Intent intent = new Intent(this, PedidoDaMesaActivity.class);
             intent.putExtras(parametros);
             startActivity(intent);

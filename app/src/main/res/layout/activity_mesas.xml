@@ -244,5 +244,25 @@
             android:onClick="abrirPedidosDaMesa"
             />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF4500">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/textAppearanceMedium"
+        android:text="Garçom: "
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/txtNomeGarcom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        style="?android:attr/textAppearanceMedium"/>
+    </LinearLayout>
 
 </LinearLayout>
