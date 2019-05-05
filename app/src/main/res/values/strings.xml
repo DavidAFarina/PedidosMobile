@@ -6,8 +6,8 @@
     <string name="negative">Cancelar</string>
     <string name="login">Login</string>
     <string name="edtSenha">Senha</string>
-    <string name="loginFail">Dados inválidos</string>
-    <string name="loginCancel">Logins Cancelado</string>
+    <string name="loginFail">Dados inválidos, favor verifique e tente novamente.</string>
+    <string name="loginCancel">Logins Cancelado.</string>
     <string name="loginOK">Você está logado!</string>
     <string name="title_activity_menu_bebidas">Sign in</string>
     <!-- Strings related to login -->
@@ -22,4 +22,12 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="action_add">Adicionar</string>
+    <string name="txt_nome">Nome:</string>
+    <string name="txt_valor">Valor:</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_ok">OK</string>
+    <string name="txt_observacao">Observação</string>
+    <string name="txt_quantidade">Qtd.</string>
+    <string name="txt_valorTotal">Vlr.Total</string>
 </resources>

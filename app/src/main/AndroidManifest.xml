@@ -26,6 +26,8 @@
         <activity android:name=".BebidasAdapter" />
         <activity android:name=".PorcaoAdapters" />
         <activity android:name=".adapter.ListaPedidoConfirmadoAdapters"></activity>
+        <activity android:name=".modulo_pedido_produto.activity.SolicitacaoDaMesaActivity"></activity>
+        <activity android:name=".modulo_pedido_produto.activity.EditarProdutoActivity"></activity>
     </application>
 
 </manifest>

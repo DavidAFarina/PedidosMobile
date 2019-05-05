@@ -62,10 +62,11 @@ public class LoginDialog extends AppCompatDialogFragment implements DialogInterf
 
                // Intent intent = new Intent(getActivity(), MesasActivity.class);
                // startActivity(intent);
-                Toast.makeText(getActivity(), R.string.loginOK, Toast.LENGTH_LONG).show();;
+                Toast.makeText(getActivity(),"Bem Vindo "+edtLogin.getText(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), R.string.loginOK, Toast.LENGTH_LONG).show();
 
             }else{
-                Toast.makeText(getActivity(), R.string.loginFail, Toast.LENGTH_SHORT).show();;
+                Toast.makeText(getActivity(), R.string.loginFail, Toast.LENGTH_SHORT).show();
             }
         }
         else if(which == DialogInterface.BUTTON_NEGATIVE){

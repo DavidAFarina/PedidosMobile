@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeightLarge">
@@ -23,7 +24,8 @@
                 android:gravity="center_vertical"
                 android:layout_marginStart="10dp"
                 />
-            <TextView
+
+    <TextView
                 android:id="@+id/txtIngredientes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -34,6 +36,14 @@
                 android:layout_marginStart="10dp"
                 />
 
+   <!-- <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="@android:color/transparent"
+        android:tint="@android:color/transparent"
+        app:srcCompat="@android:drawable/ic_input_add" />-->
 
 
 </LinearLayout>

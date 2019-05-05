@@ -66,15 +66,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Consultar Fatura"
-            android:textSize="10sp"
-            android:onClick="abrirListaPedido"/>
+            android:textSize="10sp" />
 
         <Button
-            android:id="@+id/btnPagarParcial"
+            android:id="@+id/btnConferirPedidos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pagar Parcial"
-            android:textSize="10sp"/>
+            android:text="Conferir Pedido"
+            android:textSize="10sp"
+            android:onClick="conferirPedidos"/>
 
         <Button
             android:id="@+id/btnFecharFatura"

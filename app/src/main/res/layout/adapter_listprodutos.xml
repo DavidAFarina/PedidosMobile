@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margem"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#6495ED"
+            android:text="Pedido: "
+            style="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/txt_nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFF"
+            style="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+   <!-- <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioGroup
+            android:id="@+id/rgTamanho"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbPequena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pequena" />
+
+            <RadioButton
+                android:id="@+id/rbMedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Média" />
+            <RadioButton
+                android:id="@+id/rbGrande"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Grande" />
+        </RadioGroup>
+    </LinearLayout>-->
+
+  <!--  <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/chkCatupiry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Catupiry" />
+        <CheckBox
+            android:id="@+id/chkCheddar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cheddar" />
+        <CheckBox
+            android:id="@+id/chkBrigadeiro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brigadeiro" />
+
+    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#6495ED"
+            android:text="Valor Un: "
+            style="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/txt_valor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFF"
+            android:textColor="#FF0000"
+            style="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#6495ED"
+            android:text="Qtd.: "
+            style="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/txt_quantidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFF"
+            android:textColor="#FF0000"
+            style="?android:attr/textAppearanceMedium"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#6495ED"
+            android:text="Total: "
+            style="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/txt_valorTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFF"
+            android:gravity="end"
+            android:textColor="#FF0000"
+            style="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#6495ED"
+            android:text="Observação: "
+            style="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_observacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFF"
+            style="?android:attr/textAppearanceMedium" />
+
+</LinearLayout>

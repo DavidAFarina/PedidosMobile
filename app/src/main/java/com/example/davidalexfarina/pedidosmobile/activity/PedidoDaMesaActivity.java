@@ -14,6 +14,8 @@ import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.adapter.BebidasAdapters;
 import com.example.davidalexfarina.pedidosmobile.adapter.PizzasAdapters;
 import com.example.davidalexfarina.pedidosmobile.adapter.PorcoesAdapters;
+import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.EditarProdutoActivity;
+import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.SolicitacaoDaMesaActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +25,10 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
     private Button btnPizzas;
     private Button btnPorcoes;
     private Button btnBebidas;
+    private Button btnConferirPedidos;
     private int listaCarregada = 1; //Variavel utilizada para validar a lista atual que esta selecionada e será utilizada no click do item da lista..
-    private TextView txtMesaAutal; //Variavel que recebe recebera o valor da mesa que foi selecionada no onclick da tela acticity_mesas
-    private TextView txtNomeGarcom;
+    private TextView txtMesaAutal; //Variavel que recebe recebera o numero da mesa que foi selecionada no onclick da tela acticity_mesas
+    private TextView txtNomeGarcom; //Variavel que recebe recebera o nome do uruario que se autenticou e registrou o pedido
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,7 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         btnPizzas = (Button) findViewById(R.id.btnPizzas);
         btnPorcoes = (Button) findViewById(R.id.btnPorcoes);
         btnBebidas = (Button) findViewById(R.id.btnBebidas);
-
+        Button btnConferirPedidos = (Button) findViewById(R.id.btnConferirPedidos);
 
         //Teste dentro do onCreate
         TextView txtMesaAutal = findViewById(R.id.txtMesaAutal);
@@ -58,15 +61,8 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         String numeroMesa = parametros.getString("numeroMesa");
         String garcom = parametros.getString("garcom");
 
-
-
-       txtMesaAutal.setText(numeroMesa);
-       txtNomeGarcom.setText(garcom);
-
-
-
-
-
+        txtMesaAutal.setText(numeroMesa);
+        txtNomeGarcom.setText(garcom);
     }
 
     @Override
@@ -74,8 +70,11 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         //Toast.makeText(this,"Ainda precisa ser implementado esse método onItemClick ", Toast.LENGTH_LONG).show();
         if(listaCarregada == 1){
             PizzaActivity pizzaActivity = (PizzaActivity) parent.getItemAtPosition(position);
-            Toast.makeText(this,"PizzaActivity " + (position+1) + ": "
+            Toast.makeText(this,"Pizza " + (position+1) + ": "
                     + pizzaActivity.nomePizza, Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(PedidoDaMesaActivity.this, SolicitacaoDaMesaActivity.class);
+            startActivity(intent);
 
 
 
@@ -87,8 +86,21 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         }
         if(listaCarregada == 3){
             BebidaActivity bebidaActivity = (BebidaActivity) parent.getItemAtPosition(position);
-            Toast.makeText(this,"PizzaActivity " + (position+1) + ": "
+            Toast.makeText(this,"Bebida " + (position+1) + ": "
                     + bebidaActivity.nomeBebida, Toast.LENGTH_SHORT).show();
+
+            //Intent intent = new Intent(PedidoDaMesaActivity.this, SolicitacaoDaMesaActivity.class);
+            //startActivity(intent);
+
+            Bundle parametroProduto= new Bundle();
+            parametroProduto.putString("paramNome", bebidaActivity.nomeBebida);
+            parametroProduto.putString("paramValor", String.valueOf(bebidaActivity.valor));
+            Intent intent = new Intent(PedidoDaMesaActivity.this, EditarProdutoActivity.class);
+            intent.putExtras(parametroProduto);
+            startActivity(intent);
+
+
+
         }
     }
 
@@ -113,6 +125,12 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         lista.setAdapter(new BebidasAdapters(this, BebidaActivity.getBebidas()));
         lista.setOnItemClickListener(this);
         listaCarregada = 3;
+    }
+    public void conferirPedidos(View view){
+
+        Intent intent = new Intent(PedidoDaMesaActivity.this, SolicitacaoDaMesaActivity.class);
+        startActivity(intent);
+
     }
 
 }

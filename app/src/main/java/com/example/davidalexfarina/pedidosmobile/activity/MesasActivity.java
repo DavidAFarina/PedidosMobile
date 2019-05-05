@@ -45,6 +45,7 @@ public class MesasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mesas);
 
+
         Toast.makeText(this,"Selecione a mesa desejada",Toast.LENGTH_SHORT).show();
 
         btMesa1 = (Button) findViewById(R.id.btMesa1);
