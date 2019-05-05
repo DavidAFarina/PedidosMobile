@@ -7,75 +7,111 @@
     tools:context=".modulo_pedido_produto.activity.EditarProdutoActivity"
     android:layout_margin="@dimen/margem"
     android:orientation="vertical">
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="?android:attr/textAppearanceMedium"
-        android:text="@string/txt_nome" />
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:background="@drawable/borda_vermelha">
 
-    <EditText
-        android:id="@+id/edt_nome"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/textAppearanceMedium"
+            android:text="@string/txt_nome" />
+
+        <EditText
+            android:id="@+id/edt_nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textCapSentences"
+            android:textColor="#000000"
+            android:enabled="false"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textCapSentences"/>
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:background="@drawable/borda_vermelha">
 
-    //android:enabled="false"
-    <TextView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/textAppearanceMedium"
+            android:text="@string/txt_valor"
+            />
+
+        <EditText
+            android:id="@+id/edt_valor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_weight="1"
+            android:textColor="#FF0000"
+            style="?android:attr/textAppearanceMedium"
+            android:enabled="false"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_quantidade"
+            style="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/edt_quantidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:textColor="#000000"
+            style="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_valorTotal"
+            style="?android:attr/textAppearanceMedium" />
+
+
+        <EditText
+            android:id="@+id/edt_valorTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:enabled="false"
+            android:textColor="#FF0000"
+            style="?android:attr/textAppearanceMedium"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/txt_valor"
-        style="?android:attr/textAppearanceMedium"/>
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
+        android:background="@drawable/borda_vermelha">
 
-    <EditText
-        android:id="@+id/edt_valor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal" />
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/txt_quantidade"
-        style="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/edt_quantidade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/textAppearanceMedium"
+            android:text="@string/txt_observacao" />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/txt_valorTotal"
-        style="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/edt_observacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:inputType="text|textMultiLine" />
 
 
-    <EditText
-        android:id="@+id/edt_valorTotal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal" />
-        //android:enabled="false"
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="?android:attr/textAppearanceMedium"
-        android:text="@string/txt_observacao" />
-
-    <EditText
-        android:id="@+id/edt_observacao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textCapSentences" />
+    </LinearLayout>
 
 
     <LinearLayout

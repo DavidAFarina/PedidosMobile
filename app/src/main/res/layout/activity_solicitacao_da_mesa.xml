@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.SolicitacaoDaMesaActivity"
+    tools:context=".modulo_pedido_produto.activity.EditarProdutoActivity"
     android:layout_margin="@dimen/margem">
 
     <ListView
@@ -15,6 +15,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ListView>
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ListView>
+
 
 </android.support.constraint.ConstraintLayout>

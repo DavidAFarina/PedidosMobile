@@ -11,6 +11,9 @@ import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class EditarProdutoActivity extends AppCompatActivity {
 
     private EditText edtNome;
@@ -20,6 +23,7 @@ public class EditarProdutoActivity extends AppCompatActivity {
     private EditText edtObservacao;
     private Produto produto;
     private ProdutoDAO produtoDAO;
+    private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("PT","BR"));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,30 +44,44 @@ public class EditarProdutoActivity extends AppCompatActivity {
 
         produto = (Produto) getIntent().getSerializableExtra("produto");
 
-        if (produto != null){
+        if (produto != null){ //executa quando a solicitação vernha do editar um item do pedido
             edtNome.setText(produto.getNome());
-
             edtValor.setText(String.valueOf(produto.getValor()));
-
             edtQuantidade.setText(String.valueOf(produto.getQuantidade()));
-
             /*edtValorTotal.setText(String.valueOf(produto.getValorTotal()));*/
             edtValorTotal.setText(String.valueOf(produto.getValor()*produto.getQuantidade()));
-
             edtObservacao.setText(produto.getObservacao());
+            edtQuantidade.requestFocus();
+
+        }else{//executa caso o pedido venha do click no item do cardapio, recebendo valores do item clicado no cardapio
+            Intent intent = getIntent();
+            Bundle parametroProduto = intent.getExtras();
+            String paramNome = parametroProduto.getString("paramNome");
+            String paramValor = parametroProduto.getString("paramValor");
+
+            Toast.makeText(this,paramNome,Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"teste chegou dentro do edit",Toast.LENGTH_SHORT).show();
+
+            edtNome.setText(paramNome);
+            edtValor.setText(paramValor);
+            edtQuantidade.requestFocus();
+
+
+
         }
 
-        Intent intent = getIntent();
+        /*Intent intent = getIntent();
         Bundle parametroProduto = intent.getExtras();
         String paramNome = parametroProduto.getString("paramNome");
         String paramValor = parametroProduto.getString("paramValor");
 
         Toast.makeText(this,paramNome,Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"teste chegou dentro do edit",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"teste chegou dentro do edit",Toast.LENGTH_SHORT).show();*/
 
 
-            edtNome.setText(paramNome);
-            edtValor.setText(paramValor);
+           /* edtNome.setText(paramNome);
+            edtValor.setText(paramValor);*/
+
 
     }
 

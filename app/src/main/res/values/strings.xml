@@ -27,7 +27,7 @@
     <string name="txt_valor">Valor:</string>
     <string name="btn_cancel">Cancelar</string>
     <string name="btn_ok">OK</string>
-    <string name="txt_observacao">Observação</string>
+    <string name="txt_observacao">Observação: </string>
     <string name="txt_quantidade">Qtd.</string>
     <string name="txt_valorTotal">Vlr.Total</string>
 </resources>

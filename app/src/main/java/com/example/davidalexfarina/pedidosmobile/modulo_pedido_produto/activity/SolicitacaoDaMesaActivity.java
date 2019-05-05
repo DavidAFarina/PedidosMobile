@@ -98,4 +98,5 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
         produtoDAO.delete(produto);
         updateList();
     }
+
 }

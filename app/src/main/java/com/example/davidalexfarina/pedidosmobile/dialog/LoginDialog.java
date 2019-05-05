@@ -36,9 +36,6 @@ public class LoginDialog extends AppCompatDialogFragment implements DialogInterf
         edtLogin = (EditText) view.findViewById(R.id.edtLogin);
         edtSenha = (EditText) view.findViewById(R.id.edtSenha);
 
-
-
-
         builder.setPositiveButton(R.string.positive,this);
         builder.setNegativeButton(R.string.negative,this);
 
