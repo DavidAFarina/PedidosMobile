@@ -29,7 +29,8 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
     private int listaCarregada = 1; //Variavel utilizada para validar a lista atual que esta selecionada e será utilizada no click do item da lista..
     private TextView txtMesaAutal; //Variavel que recebe recebera o numero da mesa que foi selecionada no onclick da tela acticity_mesas
     private TextView txtNomeGarcom; //Variavel que recebe recebera o nome do uruario que se autenticou e registrou o pedido
-
+    private  int mesa;
+    private String ngarcom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +64,9 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
 
         txtMesaAutal.setText(numeroMesa);
         txtNomeGarcom.setText(garcom);
+
+       mesa = Integer.parseInt(txtMesaAutal.getText().toString());
+       ngarcom = txtNomeGarcom.getText().toString();
     }
 
     @Override
@@ -93,13 +97,13 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
             //startActivity(intent);
 
             Bundle parametroProduto= new Bundle();
+            parametroProduto.putString("paramMesa", String.valueOf(mesa));
+            parametroProduto.putString("paramGarcom", ngarcom);
             parametroProduto.putString("paramNome", bebidaActivity.nomeBebida);
             parametroProduto.putString("paramValor", String.valueOf(bebidaActivity.valor));
             Intent intent = new Intent(PedidoDaMesaActivity.this, EditarProdutoActivity.class);
             intent.putExtras(parametroProduto);
             startActivity(intent);
-
-
 
         }
     }

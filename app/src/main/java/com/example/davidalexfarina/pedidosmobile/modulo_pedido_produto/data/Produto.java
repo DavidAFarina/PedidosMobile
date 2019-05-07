@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Produto implements Serializable {
     private int id;
+    private int mesa;
+    private String garcom;
     private String nome;
     private double valor;
     private int quantidade;
@@ -11,8 +13,10 @@ public class Produto implements Serializable {
     private String observacao;
 
 
-    public Produto(int id, String nome, double valor, int quantidade, double valorTotal, String observacao) {
+    public Produto(int id, int mesa, String nome, String garcom, double valor, int quantidade, double valorTotal, String observacao) {
         this.id = id;
+        this.mesa = mesa;
+        this.garcom = garcom;
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
@@ -20,7 +24,9 @@ public class Produto implements Serializable {
         this.observacao = observacao;
     }
 
-    public Produto(String nome, double valor, int quantidade, double valorTotal, String observacao) {
+    public Produto(int mesa, String nome, String garcom, double valor, int quantidade, double valorTotal, String observacao) {
+        this.mesa = mesa;
+        this.garcom = garcom;
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
@@ -36,6 +42,18 @@ public class Produto implements Serializable {
         this.id = id;
     }
 
+    public int getMesa(){ return mesa; }
+
+    public void setMesa(int mesa) {
+        this.mesa = mesa;
+    }
+
+    public String getGarcom() {
+        return garcom;
+    }
+
+    public void setGarcom(String garcom) { this.garcom = garcom; }
+
     public String getNome() {
         return nome;
     }
@@ -43,7 +61,6 @@ public class Produto implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
 
     public double getValor() { return valor; }
 

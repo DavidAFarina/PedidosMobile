@@ -30,6 +30,8 @@ public class ProdutoDAO {
 
         String[] columns = {
                 ProdutosContract.Columns._ID,
+                ProdutosContract.Columns.MESA,
+                ProdutosContract.Columns.GARCOM,
                 ProdutosContract.Columns.NOME,
                 ProdutosContract.Columns.VALOR,
                 ProdutosContract.Columns.QUANTIDADE,
@@ -54,16 +56,20 @@ public class ProdutoDAO {
 
     private static Produto fromCursor(Cursor c) {
         int id = c.getInt(c.getColumnIndex(ProdutosContract.Columns._ID));
+        int mesa = (int) c.getInt(c.getColumnIndex(ProdutosContract.Columns.MESA));
+        String garcom = c.getString(c.getColumnIndex(ProdutosContract.Columns.GARCOM));
         String nome = c.getString(c.getColumnIndex(ProdutosContract.Columns.NOME));
         double valor = c.getDouble(c.getColumnIndex(ProdutosContract.Columns.VALOR));
         int quantidade = (int) c.getInt(c.getColumnIndex(ProdutosContract.Columns.QUANTIDADE));
         double valorTotal = c.getDouble(c.getColumnIndex(ProdutosContract.Columns.VALOR_TOTAL));
         String observacao = c.getString(c.getColumnIndex(ProdutosContract.Columns.OBSERVACAO));
-        return new Produto(id, nome, valor, quantidade, valorTotal, observacao);
+        return new Produto(id, mesa, garcom, nome, valor, quantidade, valorTotal, observacao);
     }
 
     public void save(Produto produto) {
         ContentValues values = new ContentValues();
+        values.put(ProdutosContract.Columns.MESA, produto.getMesa());
+        values.put(ProdutosContract.Columns.GARCOM, produto.getGarcom());
         values.put(ProdutosContract.Columns.NOME, produto.getNome());
         values.put(ProdutosContract.Columns.VALOR, produto.getValor());
         values.put(ProdutosContract.Columns.QUANTIDADE, produto.getQuantidade());
@@ -75,6 +81,8 @@ public class ProdutoDAO {
 
     public void update(Produto produto) {
         ContentValues values = new ContentValues();
+        values.put(ProdutosContract.Columns.MESA, produto.getMesa());
+        values.put(ProdutosContract.Columns.GARCOM, produto.getGarcom());
         values.put(ProdutosContract.Columns.NOME, produto.getNome());
         values.put(ProdutosContract.Columns.VALOR, produto.getValor());
         values.put(ProdutosContract.Columns.QUANTIDADE, produto.getQuantidade());

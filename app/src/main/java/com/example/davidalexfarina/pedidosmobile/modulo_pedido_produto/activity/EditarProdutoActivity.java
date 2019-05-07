@@ -16,6 +16,8 @@ import java.util.Locale;
 
 public class EditarProdutoActivity extends AppCompatActivity {
 
+    private EditText edtMesa;
+    private EditText edtGarcom;
     private EditText edtNome;
     private EditText edtValor;
     private EditText edtQuantidade;
@@ -29,6 +31,9 @@ public class EditarProdutoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_produto);
+        edtMesa = (EditText) findViewById(R.id.edt_mesa);
+
+        edtGarcom = (EditText) findViewById(R.id.edt_garcom);
 
         edtNome = (EditText) findViewById(R.id.edt_nome);
 
@@ -45,6 +50,8 @@ public class EditarProdutoActivity extends AppCompatActivity {
         produto = (Produto) getIntent().getSerializableExtra("produto");
 
         if (produto != null){ //executa quando a solicitação vernha do editar um item do pedido
+            edtMesa.setText(String.valueOf(produto.getMesa()));
+            edtGarcom.setText(produto.getGarcom());
             edtNome.setText(produto.getNome());
             edtValor.setText(String.valueOf(produto.getValor()));
             edtQuantidade.setText(String.valueOf(produto.getQuantidade()));
@@ -56,12 +63,16 @@ public class EditarProdutoActivity extends AppCompatActivity {
         }else{//executa caso o pedido venha do click no item do cardapio, recebendo valores do item clicado no cardapio
             Intent intent = getIntent();
             Bundle parametroProduto = intent.getExtras();
+            String paramMesa = parametroProduto.getString("paramMesa");
+            String paramGarcom = parametroProduto.getString("paramGarcom");
             String paramNome = parametroProduto.getString("paramNome");
             String paramValor = parametroProduto.getString("paramValor");
 
             Toast.makeText(this,paramNome,Toast.LENGTH_SHORT).show();
             Toast.makeText(this,"teste chegou dentro do edit",Toast.LENGTH_SHORT).show();
 
+            edtMesa.setText(paramMesa);
+            edtGarcom.setText(paramGarcom);
             edtNome.setText(paramNome);
             edtValor.setText(paramValor);
             edtQuantidade.requestFocus();
@@ -86,12 +97,14 @@ public class EditarProdutoActivity extends AppCompatActivity {
     }
 
     public void processar(View view){
-        String nome = edtNome.getText().toString();
+        Integer mesa = Integer.parseInt(edtMesa.getText().toString());
 
+        String garcom = edtGarcom.getText().toString();
+
+        String nome = edtNome.getText().toString();
 
         double valor = Double.parseDouble(edtValor.getText().toString());
         String msg; //Mensagem que informa o ID da linha atualizada.
-
 
         Integer qtd = Integer.parseInt(edtQuantidade.getText().toString());
 
@@ -101,11 +114,13 @@ public class EditarProdutoActivity extends AppCompatActivity {
         String observacao = edtObservacao.getText().toString();
 
         if (produto == null) {
-            Produto produto = new Produto(nome, valor, qtd, valorTotal, observacao);
+            Produto produto = new Produto(mesa, garcom, nome, valor, qtd, valorTotal, observacao);
             produtoDAO.save(produto);
             msg = "Produto gravado com ID = " + produto.getId();
 
         } else {
+            produto.setMesa(mesa);
+            produto.setGarcom(garcom);
             produto.setNome(nome);
             produto.setValor(valor);
             produto.setQuantidade(qtd);

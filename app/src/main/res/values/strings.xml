@@ -30,4 +30,6 @@
     <string name="txt_observacao">Observação: </string>
     <string name="txt_quantidade">Qtd.</string>
     <string name="txt_valorTotal">Vlr.Total</string>
+    <string name="txt_mesa">Mesa:</string>
+    <string name="txt_garcom">Garçom:</string>
 </resources>

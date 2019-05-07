@@ -50,7 +50,9 @@ public class ProdutoAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = LayoutInflater.from(context).inflate(R.layout.adapter_listprodutos, parent, false);
 
+        TextView txtMesa = view.findViewById(R.id.txt_mesa);
         TextView txtNome = view.findViewById(R.id.txt_nome);
+        TextView txtGarcom = view.findViewById(R.id.txt_garcom);
         TextView txtValor = view.findViewById(R.id.txt_valor);
         TextView txtQuantidade = view.findViewById(R.id.txt_quantidade);
         TextView txtValorTotal = view.findViewById(R.id.txt_valorTotal);
@@ -62,6 +64,8 @@ public class ProdutoAdapter extends BaseAdapter {
 
 
         Produto produto = produtos.get(position);
+        txtMesa.setText(String.valueOf(produto.getMesa()));
+        txtGarcom.setText(produto.getGarcom());
         txtNome.setText(produto.getNome());
         txtValor.setText(nf.format(produto.getValor()));
         txtQuantidade.setText(String.valueOf(produto.getQuantidade()));
