@@ -43,12 +43,18 @@ public class PizzasAdapters extends BaseAdapter {
         ImageView imgPizza = view.findViewById(R.id.imgPizza);
         TextView txtNomePizza = view.findViewById(R.id.txtNomePizza);
         TextView txtIngredientes = view.findViewById(R.id.txtIngredientes);
+        TextView txtPizzaP = view.findViewById(R.id.txtPizzaP);
+        TextView txtPizzaM = view.findViewById(R.id.txtPizzaM);
+        TextView txtPizzaG = view.findViewById(R.id.txtPizzaG);
 
 
         PizzaActivity pizzaActivity = pizzaActivities.get(position);
         imgPizza.setImageResource(pizzaActivity.img);
         txtNomePizza.setText(pizzaActivity.nomePizza);
         txtIngredientes.setText(pizzaActivity.ingredientes);
+        txtPizzaP.setText(String.valueOf(pizzaActivity.valor_p));
+        txtPizzaM.setText(String.valueOf(pizzaActivity.valor_m));
+        txtPizzaG.setText(String.valueOf(pizzaActivity.valor_g));
 
 
         return view;

@@ -32,4 +32,7 @@
     <string name="txt_valorTotal">Vlr.Total</string>
     <string name="txt_mesa">Mesa:</string>
     <string name="txt_garcom">Garçom:</string>
+    <string name="definirTamanho">Favor selecione o tamanho.</string>
+    <string name="pedidoCancel">Pedido Cancelado.</string>
+    <string name="defenirTamanho">Definição</string>
 </resources>

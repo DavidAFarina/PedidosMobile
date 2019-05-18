@@ -14,6 +14,8 @@ import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.adapter.BebidasAdapters;
 import com.example.davidalexfarina.pedidosmobile.adapter.PizzasAdapters;
 import com.example.davidalexfarina.pedidosmobile.adapter.PorcoesAdapters;
+import com.example.davidalexfarina.pedidosmobile.dialog.LoginDialog;
+import com.example.davidalexfarina.pedidosmobile.dialog.TamanhoDialog;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.EditarProdutoActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.SolicitacaoDaMesaActivity;
 
@@ -31,6 +33,7 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
     private TextView txtNomeGarcom; //Variavel que recebe recebera o nome do uruario que se autenticou e registrou o pedido
     private  int mesa;
     private String ngarcom;
+    private String tamanho = "teste";//Variavel que recebe do dialog o tamanho selecionado
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +68,21 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         txtMesaAutal.setText(numeroMesa);
         txtNomeGarcom.setText(garcom);
 
-       mesa = Integer.parseInt(txtMesaAutal.getText().toString());
-       ngarcom = txtNomeGarcom.getText().toString();
-    }
+        Bundle parametroTamanho = intent.getExtras();
+        String tamanho = parametroTamanho.getString("paramTamanho");
+
+      mesa = Integer.parseInt(txtMesaAutal.getText().toString());
+      ngarcom = txtNomeGarcom.getText().toString();
+
+
+        /*Toast.makeText(this,"tamanho que retornou do dialog "+tamanho, Toast.LENGTH_LONG).show();*/
+
+
+        }
+
+
+
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -77,16 +92,36 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
             Toast.makeText(this,"Pizza " + (position+1) + ": "
                     + pizzaActivity.nomePizza, Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(PedidoDaMesaActivity.this, SolicitacaoDaMesaActivity.class);
-            startActivity(intent);
+///////////////////////////////////////////
+            TamanhoDialog tamanhoDialog = new TamanhoDialog();
+            Bundle data = new Bundle();
+            data.putString("paramMesa", String.valueOf(mesa));
+            data.putString("paramGarcom", String.valueOf(ngarcom));
+            data.putString("paramNome", pizzaActivity.nomePizza);
+            data.putString("valorP", String.valueOf(pizzaActivity.valor_p));
+            data.putString("valorM", String.valueOf(pizzaActivity.valor_m));
+            data.putString("valorG", String.valueOf(pizzaActivity.valor_g));
+            tamanhoDialog.setArguments(data);
+////////////////////////////////////////
 
+            //TamanhoDialog tamanhoDialog = new TamanhoDialog();
+            tamanhoDialog.show(getSupportFragmentManager(),"tamanhoDialog");
 
+            //Toast.makeText(this,"tamanho que retornou do dialog "+tamanho, Toast.LENGTH_LONG).show();
 
         }
         if(listaCarregada == 2){
             PorcaoActivity porcaoActivity = (PorcaoActivity) parent.getItemAtPosition(position);
             Toast.makeText(this,"Porção " + (position+1) + ": "
                     + porcaoActivity.nomePorcao, Toast.LENGTH_SHORT).show();
+            Bundle parametroProduto= new Bundle();
+            parametroProduto.putString("paramMesa", String.valueOf(mesa));
+            parametroProduto.putString("paramGarcom", ngarcom);
+            parametroProduto.putString("paramNome", porcaoActivity.nomePorcao);
+            parametroProduto.putString("paramValor", String.valueOf(porcaoActivity.valor));
+            Intent intent = new Intent(PedidoDaMesaActivity.this, EditarProdutoActivity.class);
+            intent.putExtras(parametroProduto);
+            startActivity(intent);
         }
         if(listaCarregada == 3){
             BebidaActivity bebidaActivity = (BebidaActivity) parent.getItemAtPosition(position);
