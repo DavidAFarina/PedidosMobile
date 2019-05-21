@@ -20,6 +20,7 @@ import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.EditarProdutoActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -36,13 +37,14 @@ public class TamanhoDialog extends AppCompatDialogFragment implements DialogInte
     private TextView txtValorP;
     private TextView txtValorM;
     private TextView txtValorG;
+    private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("PT","BR"));
     String mesa;
     String garcom;
     String pizza ;
     String valorP;
     String valorM;
     String valorG;
-    private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("PT","BR"));
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -79,7 +81,7 @@ public class TamanhoDialog extends AppCompatDialogFragment implements DialogInte
         txtValorP.setText(valorP);
         txtValorM.setText(valorM);
         txtValorG.setText(valorG);
-        //(nf.format(produto.getValorTotal()))
+
 
         builder.setPositiveButton(R.string.positive,this);
         builder.setNegativeButton(R.string.negative,this);
@@ -89,6 +91,7 @@ public class TamanhoDialog extends AppCompatDialogFragment implements DialogInte
                 /*Toast.makeText(this, paramNome, Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, "teste chegou dentro do edit", Toast.LENGTH_SHORT).show();
 */
+
         return builder.create();
     }
 
@@ -141,6 +144,8 @@ public class TamanhoDialog extends AppCompatDialogFragment implements DialogInte
 
 
                     break;
+                    default: Toast.makeText(getActivity(),"Selecione o tamanho.",Toast.LENGTH_SHORT).show();
+
             }
             Intent intent = new Intent(getActivity(), EditarProdutoActivity.class);
             intent.putExtras(parametroProduto);

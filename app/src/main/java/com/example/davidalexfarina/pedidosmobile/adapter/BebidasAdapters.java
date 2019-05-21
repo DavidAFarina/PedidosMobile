@@ -11,11 +11,14 @@ import android.widget.TextView;
 import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.activity.BebidaActivity;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class BebidasAdapters extends BaseAdapter {
     private Context context;
     private List<BebidaActivity> bebidaActivities;
+    private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("PT","BR"));
 
     public BebidasAdapters(Context context, List<BebidaActivity> bebidaActivities) {
         this.context = context;
@@ -50,8 +53,8 @@ public class BebidasAdapters extends BaseAdapter {
         imgBebida.setImageResource(bebidaActivity.img);
         txtNomeBebida.setText(bebidaActivity.nomeBebida);
         txtDescricao.setText(bebidaActivity.descricao);
-        txtValor.setText(String.valueOf(bebidaActivity.valor));
-
+        //txtValor.setText(String.valueOf(bebidaActivity.valor));
+        txtValor.setText(nf.format(bebidaActivity.valor));
 
         return view;
     }

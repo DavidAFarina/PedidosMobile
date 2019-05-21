@@ -54,8 +54,10 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_add) {
-            Intent intent = new Intent(getApplicationContext(), EditarProdutoActivity.class);
-            startActivityForResult(intent, REQ_EDIT);
+            Toast.makeText(this, "pedidos enviados para o servidor", Toast.LENGTH_SHORT).show();
+
+            /*Intent intent = new Intent(getApplicationContext(), EditarProdutoActivity.class);
+            startActivityForResult(intent, REQ_EDIT);*/
             return true;
         }
         return super.onOptionsItemSelected(item);

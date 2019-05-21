@@ -56,13 +56,14 @@ public class EditarProdutoActivity extends AppCompatActivity {
                 edtMesa.setText(String.valueOf(produto.getMesa()));
                 edtGarcom.setText(produto.getGarcom());
                 edtNome.setText(produto.getNome());
+                //edtValor.setText(String.valueOf(produto.getValor()));
+                /*edtValor.setText(nf.format(produto.getValor()));*/
                 edtValor.setText(String.valueOf(produto.getValor()));
                 edtQuantidade.setText(String.valueOf(produto.getQuantidade()));
                 /*edtValorTotal.setText(String.valueOf(produto.getValorTotal()));*/
                 edtValorTotal.setText(String.valueOf(produto.getValor() * produto.getQuantidade()));
                 edtObservacao.setText(produto.getObservacao());
                 edtQuantidade.requestFocus();
-
 
             } else {//executa caso o pedido venha do click no item do cardapio, recebendo valores do item clicado no cardapio
                 Intent intent = getIntent();
@@ -79,20 +80,10 @@ public class EditarProdutoActivity extends AppCompatActivity {
                 edtGarcom.setText(paramGarcom);
                 edtNome.setText(paramNome);
                 edtValor.setText(paramValor);
+                //edtValor.setText(nf.format(paramValor.toString()));
                 edtQuantidade.requestFocus();
             }
 
-        /*Intent intent = getIntent();
-        Bundle parametroProduto = intent.getExtras();
-        String paramNome = parametroProduto.getString("paramNome");
-        String paramValor = parametroProduto.getString("paramValor");
-
-        Toast.makeText(this,paramNome,Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"teste chegou dentro do edit",Toast.LENGTH_SHORT).show();*/
-
-
-           /* edtNome.setText(paramNome);
-            edtValor.setText(paramValor);*/
 
     }
 

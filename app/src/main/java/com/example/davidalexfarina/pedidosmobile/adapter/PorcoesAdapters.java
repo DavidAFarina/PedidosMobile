@@ -11,11 +11,14 @@ import android.widget.TextView;
 import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.activity.PorcaoActivity;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class PorcoesAdapters extends BaseAdapter {
     private Context context;
     private List<PorcaoActivity> porcoes;
+    private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("PT","BR"));
 
     public PorcoesAdapters(Context context, List<PorcaoActivity> porcoes) {
         this.context = context;
@@ -52,7 +55,9 @@ public class PorcoesAdapters extends BaseAdapter {
         txtNomePorcao.setText(porcaoActivity.nomePorcao);
         txtDescricao.setText(porcaoActivity.descricao);
         txtTamanho.setText(porcaoActivity.tamanho);
-        txtValor.setText(String.valueOf(porcaoActivity.valor));
+        txtValor.setText(nf.format(porcaoActivity.valor));
+        //txtValor.setText(String.valueOf(porcaoActivity.valor));
+
 
 
         return view;

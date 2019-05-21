@@ -7,15 +7,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import java.text.NumberFormat;
 import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.activity.PizzaActivity;
 
 import java.util.List;
+import java.util.Locale;
 
 public class PizzasAdapters extends BaseAdapter {
     private Context context;
     private List<PizzaActivity> pizzaActivities;
+    private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("PT","BR"));
 
     public PizzasAdapters(Context context, List<PizzaActivity> pizzaActivities) {
         this.context = context;
@@ -52,9 +54,13 @@ public class PizzasAdapters extends BaseAdapter {
         imgPizza.setImageResource(pizzaActivity.img);
         txtNomePizza.setText(pizzaActivity.nomePizza);
         txtIngredientes.setText(pizzaActivity.ingredientes);
-        txtPizzaP.setText(String.valueOf(pizzaActivity.valor_p));
-        txtPizzaM.setText(String.valueOf(pizzaActivity.valor_m));
-        txtPizzaG.setText(String.valueOf(pizzaActivity.valor_g));
+        //txtPizzaP.setText(String.valueOf(pizzaActivity.valor_p));
+        //txtPizzaM.setText(String.valueOf(pizzaActivity.valor_m));
+        //txtPizzaG.setText(String.valueOf(pizzaActivity.valor_g));
+        txtPizzaP.setText(nf.format(pizzaActivity.valor_p));
+        txtPizzaM.setText(nf.format(pizzaActivity.valor_m));
+        txtPizzaG.setText(nf.format(pizzaActivity.valor_g));
+
 
 
         return view;
