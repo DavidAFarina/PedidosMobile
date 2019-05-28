@@ -71,26 +71,23 @@ public class TamanhoDialog extends AppCompatDialogFragment implements DialogInte
         String mesa = data.getString("paramMesa");
         String garcom = data.getString("paramGarcom");
         String pizza = data.getString("paramNome");
-        String valorP = data.getString("valorP");
-        String valorM = data.getString("valorM");
-        String valorG = data.getString("valorG");
+        //double valorP = Double.parseDouble(data.getString("valorP"));
+        valorP = data.getString("valorP");
+        valorM = data.getString("valorM");
+        valorG = data.getString("valorG");
         /////////////////////////Seta os as informações vindas da lista de pizza nos campos do dialog de definição
         txtMesa.setText(mesa);
         txtGarcom.setText(garcom);
         txtPizza.setText(pizza);
-        txtValorP.setText(valorP);
-        txtValorM.setText(valorM);
-        txtValorG.setText(valorG);
+        txtValorP.setText(nf.format(Double.parseDouble(valorP)));
+       //txtValorP.setText(valorP);
+        txtValorM.setText(nf.format(Double.parseDouble(valorM)));
+        txtValorG.setText(nf.format(Double.parseDouble(valorG)));
 
 
         builder.setPositiveButton(R.string.positive,this);
         builder.setNegativeButton(R.string.negative,this);
 
-
-
-                /*Toast.makeText(this, paramNome, Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "teste chegou dentro do edit", Toast.LENGTH_SHORT).show();
-*/
 
         return builder.create();
     }
@@ -111,7 +108,8 @@ public class TamanhoDialog extends AppCompatDialogFragment implements DialogInte
                     parametroProduto.putString("paramMesa", txtMesa.getText().toString());
                     parametroProduto.putString("paramGarcom", txtGarcom.getText().toString());
                     parametroProduto.putString("paramNome", txtPizza.getText().toString());
-                    parametroProduto.putString("paramValor",  txtValorP.getText().toString());
+                    //parametroProduto.putString("paramValor", txtValorP.getText().toString());
+                    parametroProduto.putString("paramValor", valorP);
                    /* Intent intent = new Intent(getActivity(), EditarProdutoActivity.class);
                     intent.putExtras(parametroProduto);
                     startActivity(intent);*/
@@ -123,7 +121,7 @@ public class TamanhoDialog extends AppCompatDialogFragment implements DialogInte
                     parametroProduto.putString("paramMesa", txtMesa.getText().toString());
                     parametroProduto.putString("paramGarcom", txtGarcom.getText().toString());
                     parametroProduto.putString("paramNome", txtPizza.getText().toString());
-                    parametroProduto.putString("paramValor",  txtValorM.getText().toString());
+                    parametroProduto.putString("paramValor", valorM);
                    /* Intent intent = new Intent(getActivity(), EditarProdutoActivity.class);
                     intent.putExtras(parametroProduto);
                     startActivity(intent);*/
@@ -137,7 +135,8 @@ public class TamanhoDialog extends AppCompatDialogFragment implements DialogInte
                     parametroProduto.putString("paramMesa", txtMesa.getText().toString());
                     parametroProduto.putString("paramGarcom", txtGarcom.getText().toString());
                     parametroProduto.putString("paramNome", txtPizza.getText().toString());
-                    parametroProduto.putString("paramValor",  txtValorG.getText().toString());
+                    parametroProduto.putString("paramValor", valorG);
+                    //parametroProduto.putString("paramValor",  txtValorG.getText().toString());
                    /* Intent intent = new Intent(getActivity(), EditarProdutoActivity.class);
                     intent.putExtras(parametroProduto);
                     startActivity(intent);*/
@@ -145,6 +144,7 @@ public class TamanhoDialog extends AppCompatDialogFragment implements DialogInte
 
                     break;
                     default: Toast.makeText(getActivity(),"Selecione o tamanho.",Toast.LENGTH_SHORT).show();
+
 
             }
             Intent intent = new Intent(getActivity(), EditarProdutoActivity.class);

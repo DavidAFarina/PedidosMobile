@@ -16,6 +16,8 @@ import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.activity.MainActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
+import com.example.davidalexfarina.pedidosmobile.modulo_autenticacao_usuario.ControllerUsuario;
+import com.example.davidalexfarina.pedidosmobile.modulo_autenticacao_usuario.Usuario;
 
 public class LoginDialog extends AppCompatDialogFragment implements DialogInterface.OnClickListener {
 
@@ -48,6 +50,7 @@ public class LoginDialog extends AppCompatDialogFragment implements DialogInterf
         if(which == DialogInterface.BUTTON_POSITIVE){
             String login = edtLogin.getText().toString();
             String senha = edtSenha.getText().toString();
+
 
             if(login.equals("admin")&&senha.equals("admin")){
                 Bundle parametro_garcom = new Bundle();

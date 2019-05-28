@@ -72,7 +72,7 @@
         android:text="@string/definirTamanho"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -94,6 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:checked="true"
                     android:text="Média" />
 
                 <RadioButton
@@ -107,23 +108,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/txtValorP"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:padding="3pt"
                 android:text="preço P"
                 />
             <TextView
                 android:id="@+id/txtValorM"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:padding="3pt"
                 android:text="preço M"
                 />
             <TextView
                 android:id="@+id/txtValorG"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:padding="3pt"
                 android:text="preço G"
