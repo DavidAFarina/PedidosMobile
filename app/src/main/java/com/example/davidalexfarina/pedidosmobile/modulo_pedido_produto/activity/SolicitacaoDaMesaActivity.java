@@ -31,18 +31,12 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
         setContentView(R.layout.activity_solicitacao_da_mesa);
 
         lista = findViewById(R.id.lista);
-
         adapter = new ProdutoAdapter(this);
-
         lista.setAdapter(adapter);
-
         lista.setOnItemClickListener(this);
         lista.setOnItemLongClickListener(this);
-
         produtoDAO = ProdutoDAO.getInstance(this);
-
         updateList();
-
     }
 
     @Override

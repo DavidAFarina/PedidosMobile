@@ -48,10 +48,8 @@ public class ProdutoDAO {
                     produtos.add(p);
                 } while (c.moveToNext());
             }
-
             return produtos;
         }
-
     }
 
     private static Produto fromCursor(Cursor c) {

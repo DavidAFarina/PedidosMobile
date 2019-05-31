@@ -49,12 +49,16 @@ public class EditarProdutoActivity extends AppCompatActivity {
         produto = (Produto) getIntent().getSerializableExtra("produto");
 
         if (produto != null) { //executa quando a solicitação venha do editar um item do pedido
+            paramValor = String.valueOf(produto.getValor());
             edtMesa.setText(String.valueOf(produto.getMesa()));
             edtGarcom.setText(produto.getGarcom());
             edtNome.setText(produto.getNome());
-            edtValor.setText(String.valueOf(produto.getValor()));
+            //edtValor.setText(String.valueOf(produto.getValor()));
+            edtValor.setText(nf.format(Double.parseDouble(String.valueOf(produto.getValor()))));
+            //edtValor.setText(paramValor);
             edtQuantidade.setText(String.valueOf(produto.getQuantidade()));
-            edtValorTotal.setText(String.valueOf(produto.getValor() * produto.getQuantidade()));
+            //edtValorTotal.setText(String.valueOf(produto.getValor() * produto.getQuantidade()));
+            edtValorTotal.setText(nf.format(Double.parseDouble(String.valueOf(produto.getValor()*produto.getQuantidade()))));
             edtObservacao.setText(produto.getObservacao());
             edtQuantidade.requestFocus();
 
@@ -86,7 +90,7 @@ public class EditarProdutoActivity extends AppCompatActivity {
             Integer mesa = Integer.parseInt(edtMesa.getText().toString());
             String garcom = edtGarcom.getText().toString();
             String nome = edtNome.getText().toString();
-            //double valor = Double.parseDouble(edtValor.getText().toString());
+           //double valor = Double.parseDouble(edtValor.getText().toString());
             double valor = Double.parseDouble(paramValor);
             String msg; //Mensagem que informa o ID da linha atualizada.
             Integer qtd = Integer.parseInt(edtQuantidade.getText().toString());
