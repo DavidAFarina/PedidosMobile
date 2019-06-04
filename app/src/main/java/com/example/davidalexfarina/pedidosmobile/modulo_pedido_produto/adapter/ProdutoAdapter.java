@@ -61,13 +61,9 @@ public class ProdutoAdapter extends BaseAdapter{
         TextView txtValorTotal = view.findViewById(R.id.txt_valorTotal);
         TextView txtObservacao = view.findViewById(R.id.txt_observacao);
 /*
-
         ImageButton ib_edit = view.findViewById(R.id.ib_edit);
         ImageButton ib_delete = view.findViewById(R.id.ib_delete);
-
 */
-
-
         final Produto produto = produtos.get(position);
         txtMesa.setText(String.valueOf(produto.getMesa()));
         txtGarcom.setText(produto.getGarcom());
@@ -86,8 +82,6 @@ public class ProdutoAdapter extends BaseAdapter{
                 notifyDataSetChanged();
             }
         });
-
-
         ib_delete.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -95,8 +89,6 @@ public class ProdutoAdapter extends BaseAdapter{
                 //do something
                 produtos.remove(position); //or some other task
                 notifyDataSetChanged();
-
-
             }
         });*/
 
@@ -107,5 +99,4 @@ public class ProdutoAdapter extends BaseAdapter{
         this.produtos = produtos;
         notifyDataSetChanged();
     }
-
 }

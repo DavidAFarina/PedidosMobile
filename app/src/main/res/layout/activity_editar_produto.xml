@@ -44,6 +44,7 @@
             android:textColor="#000000"
             android:enabled="false"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:attr/textAppearanceMedium"
-            android:text="@string/txt_nome" />
+            android:text="@string/txt_nome_pedido" />
 
         <EditText
             android:id="@+id/edt_nome"
@@ -106,7 +107,7 @@
             android:textColor="#000000"
             style="?android:attr/textAppearanceMedium"/>
 
-        <TextView
+        <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_valorTotal"
@@ -121,8 +122,32 @@
             android:inputType="numberDecimal"
             android:enabled="false"
             android:textColor="#FF0000"
-            style="?android:attr/textAppearanceMedium"/>
+            style="?android:attr/textAppearanceMedium"/>-->
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:background="@drawable/borda_vermelha">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_valorTotal"
+            style="?android:attr/textAppearanceMedium" />
+
+
+        <EditText
+            android:id="@+id/edt_valorTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:enabled="false"
+            android:textColor="#FF0000"
+            style="?android:attr/textAppearanceMedium"/>
     </LinearLayout>
 
     <LinearLayout

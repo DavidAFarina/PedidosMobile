@@ -4,19 +4,20 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoDAO {
     private static ProdutoDAO instance;
-
     private SQLiteDatabase db;
+    public Integer numeroMesa = 10;
 
-    private ProdutoDAO(Context context) {
+
+    public ProdutoDAO(Context context) {
         DBHelper dbHelper = DBHelper.getInstance(context);
         db = dbHelper.getWritableDatabase();
     }
+
 
     //singleton
     public static ProdutoDAO getInstance(Context context) {
@@ -40,8 +41,20 @@ public class ProdutoDAO {
         };
 
         List<Produto> produtos = new ArrayList<>();
+//essa codigo carrega todos os pedidos
+       /* try (Cursor c = db.query(ProdutosContract.TABLE_NAME, columns, null, null, null, null, ProdutosContract.Columns.NOME)) {
+            if (c.moveToFirst()) {
+                do {
+                    Produto p = ProdutoDAO.fromCursor(c);
+                    produtos.add(p);
+                } while (c.moveToNext());
+            }
+            return produtos;
+        }*/
 
-        try (Cursor c = db.query(ProdutosContract.TABLE_NAME, columns, null, null, null, null, ProdutosContract.Columns.NOME)) {
+        //String sqlSelect = "SELECT * FROM produtosdb WHERE MESA= '10'";
+        try (Cursor c = db.rawQuery("SELECT * FROM produto WHERE MESA= "+numeroMesa, null)) {
+        //try (Cursor c = db.rawQuery("SELECT * FROM produto", null)) {
             if (c.moveToFirst()) {
                 do {
                     Produto p = ProdutoDAO.fromCursor(c);
@@ -91,5 +104,17 @@ public class ProdutoDAO {
 
     public void delete(Produto produto) {
         db.delete(ProdutosContract.TABLE_NAME, ProdutosContract.Columns._ID + " = ?", new String[]{ String.valueOf(produto.getId()) });
+    }
+    public int consultaPedidoMesa(String mesa){
+        numeroMesa = Integer.valueOf(mesa);
+        return numeroMesa;
+    }
+
+    public void setNumeroMesa(String mesa) {
+        this.numeroMesa = Integer.parseInt(mesa);
+    }
+
+    public Integer getNumeroMesa() {
+        return numeroMesa;
     }
 }

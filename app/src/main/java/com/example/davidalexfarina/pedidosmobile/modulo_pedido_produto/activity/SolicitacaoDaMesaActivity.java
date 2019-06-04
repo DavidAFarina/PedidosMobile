@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.adapter.ProdutoAdapter;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
@@ -29,6 +28,16 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solicitacao_da_mesa);
+        ////////////////////////////////////
+        Intent intent = getIntent();//recebe o numero da mesa usar na SQL e carregar apenas os pedidos da mesa selecionada
+        Bundle parametros = intent.getExtras();
+        String numeroMesa = parametros.getString("numeroMesa");
+        Toast.makeText(this, "A carregar os pedidos da mesa: "+numeroMesa, Toast.LENGTH_SHORT).show();
+        //produtoDAO.setNumeroMesa(numeroMesa);
+         produtoDAO.consultaPedidoMesa(numeroMesa);
+        //numeroMesa = String.valueOf(produtoDAO.getNumeroMesa());
+        //Toast.makeText(this, "O numero da mesa selecionada é: "+numeroMesa, Toast.LENGTH_SHORT).show();
+        ///////////////////////////////////////////////
 
         lista = findViewById(R.id.lista);
         adapter = new ProdutoAdapter(this);

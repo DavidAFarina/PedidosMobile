@@ -13,7 +13,7 @@ public class Produto implements Serializable {
     private String observacao;
 
 
-    public Produto(int id, int mesa, String nome, String garcom, double valor, int quantidade, double valorTotal, String observacao) {
+    public Produto(int id, int mesa, String garcom, String nome, double valor, int quantidade, double valorTotal, String observacao) {
         this.id = id;
         this.mesa = mesa;
         this.garcom = garcom;
@@ -24,7 +24,7 @@ public class Produto implements Serializable {
         this.observacao = observacao;
     }
 
-    public Produto(int mesa, String nome, String garcom, double valor, int quantidade, double valorTotal, String observacao) {
+    public Produto(int mesa, String garcom, String nome, double valor, int quantidade, double valorTotal, String observacao) {
         this.mesa = mesa;
         this.garcom = garcom;
         this.nome = nome;
@@ -37,13 +37,11 @@ public class Produto implements Serializable {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
 
     public int getMesa(){ return mesa; }
-
     public void setMesa(int mesa) {
         this.mesa = mesa;
     }
@@ -51,41 +49,34 @@ public class Produto implements Serializable {
     public String getGarcom() {
         return garcom;
     }
-
     public void setGarcom(String garcom) { this.garcom = garcom; }
 
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
 
     public double getValor() { return valor; }
-
     public void setValor(double valor) {
         this.valor = valor;
     }
 
 
     public int getQuantidade(){ return quantidade; }
-
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
 
     public double getValorTotal() { return valorTotal; }
-
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
 
-
     public String getObservacao() {
         return observacao;
     }
-
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
