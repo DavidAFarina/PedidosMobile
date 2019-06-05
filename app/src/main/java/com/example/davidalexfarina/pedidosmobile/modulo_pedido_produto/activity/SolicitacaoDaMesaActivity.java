@@ -33,11 +33,7 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
         Bundle parametros = intent.getExtras();
         String numeroMesa = parametros.getString("numeroMesa");
         Toast.makeText(this, "A carregar os pedidos da mesa: "+numeroMesa, Toast.LENGTH_SHORT).show();
-        //produtoDAO.setNumeroMesa(numeroMesa);
-         produtoDAO.consultaPedidoMesa(numeroMesa);
-        //numeroMesa = String.valueOf(produtoDAO.getNumeroMesa());
-        //Toast.makeText(this, "O numero da mesa selecionada é: "+numeroMesa, Toast.LENGTH_SHORT).show();
-        ///////////////////////////////////////////////
+
 
         lista = findViewById(R.id.lista);
         adapter = new ProdutoAdapter(this);
@@ -45,6 +41,9 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
         lista.setOnItemClickListener(this);
         lista.setOnItemLongClickListener(this);
         produtoDAO = ProdutoDAO.getInstance(this);
+        produtoDAO.consultaPedidoMesa(numeroMesa);
+
+
         updateList();
     }
 

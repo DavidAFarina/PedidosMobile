@@ -11,6 +11,7 @@ public class ProdutoDAO {
     private static ProdutoDAO instance;
     private SQLiteDatabase db;
     public Integer numeroMesa = 10;
+    public Double fatura= 0.0;
 
 
     public ProdutoDAO(Context context) {
@@ -54,7 +55,7 @@ public class ProdutoDAO {
 
         //String sqlSelect = "SELECT * FROM produtosdb WHERE MESA= '10'";
         try (Cursor c = db.rawQuery("SELECT * FROM produto WHERE MESA= "+numeroMesa, null)) {
-        //try (Cursor c = db.rawQuery("SELECT * FROM produto", null)) {
+       // try (Cursor c = db.rawQuery("SELECT * FROM produto", null)) {
             if (c.moveToFirst()) {
                 do {
                     Produto p = ProdutoDAO.fromCursor(c);
@@ -110,11 +111,39 @@ public class ProdutoDAO {
         return numeroMesa;
     }
 
-    public void setNumeroMesa(String mesa) {
-        this.numeroMesa = Integer.parseInt(mesa);
+    public String consultaFaturaMesa(String mesa){
+        numeroMesa = Integer.valueOf(mesa);
+
+       //Cursor fatura = db.rawQuery("SELECT 'VALOR_TOTAL' FROM produto WHERE MESA= "+numeroMesa, null);
+
+
+        String[] columns = {
+                ProdutosContract.Columns._ID,
+                ProdutosContract.Columns.MESA,
+                ProdutosContract.Columns.GARCOM,
+                ProdutosContract.Columns.NOME,
+                ProdutosContract.Columns.VALOR,
+                ProdutosContract.Columns.QUANTIDADE,
+                ProdutosContract.Columns.VALOR_TOTAL,
+                ProdutosContract.Columns.OBSERVACAO
+        };
+        Cursor fatura = db.rawQuery("SELECT SUM('VALOR_TOTAL') FROM produto WHERE MESA= "+numeroMesa, null);
+        //
+        // Cursor fatura = db.rawQuery("SELECT SUM('VALOR_TOTAL') FROM produto WHERE MESA= "+numeroMesa, null);
+        //Cursor fatura = db.query(ProdutosContract.TABLE_NAME, columns, null, null, null, null, ProdutosContract.Columns.NOME);
+
+        System.out.println("*******************************************************");
+        System.out.println(fatura.getColumnName(0));//6
+        System.out.println(numeroMesa);
+        System.out.println("*******************************************************");
+        String teste = fatura.getString(0);
+        System.out.println("*******************************************************");
+        System.out.println(teste);
+        System.out.println("*******************************************************");
+      //  return fatura.get;
+        //double db = fatura.getDouble(6);
+        return teste;
     }
 
-    public Integer getNumeroMesa() {
-        return numeroMesa;
-    }
+
 }

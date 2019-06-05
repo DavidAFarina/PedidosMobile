@@ -18,6 +18,7 @@ import com.example.davidalexfarina.pedidosmobile.dialog.LoginDialog;
 import com.example.davidalexfarina.pedidosmobile.dialog.TamanhoDialog;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.EditarProdutoActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.SolicitacaoDaMesaActivity;
+import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,8 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
     private  int mesa;
     private String ngarcom;
     private String tamanho = "teste";//Variavel que recebe do dialog o tamanho selecionado
+    private Double faturaT = 0.0;
+    private ProdutoDAO produtoDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,12 +79,15 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
 
 
         /*Toast.makeText(this,"tamanho que retornou do dialog "+tamanho, Toast.LENGTH_LONG).show();*/
+        //teste para calcular a fatura
+        /*produtoDAO = ProdutoDAO.getInstance(this);
+        produtoDAO.consultaFaturaMesa(String.valueOf(mesa));
+        String testeFatura = String.valueOf(produtoDAO.consultaFaturaMesa(String.valueOf(mesa)));
+
+        Toast.makeText(this,"Fatura: "+ testeFatura, Toast.LENGTH_LONG).show();*/
 
 
         }
-
-
-
 
 
     @Override
