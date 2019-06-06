@@ -127,22 +127,26 @@ public class ProdutoDAO {
                 ProdutosContract.Columns.VALOR_TOTAL,
                 ProdutosContract.Columns.OBSERVACAO
         };
-        Cursor fatura = db.rawQuery("SELECT SUM('VALOR_TOTAL') FROM produto WHERE MESA= "+numeroMesa, null);
-        //
-        // Cursor fatura = db.rawQuery("SELECT SUM('VALOR_TOTAL') FROM produto WHERE MESA= "+numeroMesa, null);
-        //Cursor fatura = db.query(ProdutosContract.TABLE_NAME, columns, null, null, null, null, ProdutosContract.Columns.NOME);
+        Cursor fatura = db.rawQuery("SELECT SUM(valorTotal) FROM produto WHERE MESA= "+numeroMesa, null);
 
-        System.out.println("*******************************************************");
-        System.out.println(fatura.getColumnName(0));//6
-        System.out.println(numeroMesa);
-        System.out.println("*******************************************************");
-        String teste = fatura.getString(0);
-        System.out.println("*******************************************************");
-        System.out.println(teste);
-        System.out.println("*******************************************************");
-      //  return fatura.get;
-        //double db = fatura.getDouble(6);
-        return teste;
+
+
+        double  valorTotal = 0;
+        int i = 0;
+        if (fatura.getCount() > 0)
+        {
+            fatura.moveToFirst();
+
+            valorTotal = fatura.getDouble(0);
+
+                System.out.println("*************    Soma do valor total  *****************************************");
+                System.out.println(valorTotal);
+                System.out.println("*******************************************************");
+
+
+        }
+
+        return String.valueOf(valorTotal);
     }
 
 

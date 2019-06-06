@@ -20,8 +20,10 @@ import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.SolicitacaoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -32,10 +34,11 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
     private int listaCarregada = 1; //Variavel utilizada para validar a lista atual que esta selecionada e será utilizada no click do item da lista..
     private TextView txtMesaAutal; //Variavel que recebe recebera o numero da mesa que foi selecionada no onclick da tela acticity_mesas
     private TextView txtNomeGarcom; //Variavel que recebe recebera o nome do uruario que se autenticou e registrou o pedido
+    private TextView txtFatura;
     private  int mesa;
     private String ngarcom;
     private String tamanho = "teste";//Variavel que recebe do dialog o tamanho selecionado
-    private Double faturaT = 0.0;
+    private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("PT","BR"));
     private ProdutoDAO produtoDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
 
         //Teste dentro do onCreate
         TextView txtMesaAutal = findViewById(R.id.txtMesaAutal);
+        TextView txtFatura = findViewById(R.id.txtFatura);
         TextView txtNomeGarcom = findViewById(R.id.txtNomeGarcom);
         Intent intent = getIntent();
         Bundle parametros = intent.getExtras();
@@ -77,16 +81,15 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
       mesa = Integer.parseInt(txtMesaAutal.getText().toString());
       ngarcom = txtNomeGarcom.getText().toString();
 
-
         /*Toast.makeText(this,"tamanho que retornou do dialog "+tamanho, Toast.LENGTH_LONG).show();*/
         //teste para calcular a fatura
-        /*produtoDAO = ProdutoDAO.getInstance(this);
+        produtoDAO = ProdutoDAO.getInstance(this);
         produtoDAO.consultaFaturaMesa(String.valueOf(mesa));
-        String testeFatura = String.valueOf(produtoDAO.consultaFaturaMesa(String.valueOf(mesa)));
+        /*String vlrFatura = String.valueOf(produtoDAO.consultaFaturaMesa(String.valueOf(mesa)));*/
+        double vlrFatura = Double.parseDouble(produtoDAO.consultaFaturaMesa(String.valueOf(mesa)));
 
-        Toast.makeText(this,"Fatura: "+ testeFatura, Toast.LENGTH_LONG).show();*/
-
-
+        Toast.makeText(this,"Fatura: "+ vlrFatura, Toast.LENGTH_LONG).show();
+        txtFatura.setText(nf.format(vlrFatura));
         }
 
 
