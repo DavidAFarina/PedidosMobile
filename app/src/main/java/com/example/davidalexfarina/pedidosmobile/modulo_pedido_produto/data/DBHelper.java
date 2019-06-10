@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.davidalexfarina.pedidosmobile.modulo_usuario.UsuarioContract;
-
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "bancoPedidosMobile"/*"produtosdb"*/;
@@ -26,14 +24,14 @@ public class DBHelper extends SQLiteOpenHelper {
             PedidosMobileContract.Columns.VALOR_TOTAL, PedidosMobileContract.Columns.OBSERVACAO);
 
 
-    private static final String SQL_DROP_USUARIO = "DROP TABLE IF EXISTS " + UsuarioContract.TABLE_USUARIO;
+    private static final String SQL_DROP_USUARIO = "DROP TABLE IF EXISTS " + PedidosMobileContract.TABLE_USUARIO;
     private static final String SQL_CREATE_USUARIO = String.format(
             "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " + //Coluna ID
-                    "%s TEXT NOT NULL, " + //Coluna GARCOM
-                    "%s TEXT NOT NULL, ", //Coluna NOME
-            UsuarioContract.TABLE_USUARIO, UsuarioContract.Columns._ID_USUARIO,
-            UsuarioContract.Columns.NOME_USUARIO,
-            UsuarioContract.Columns.SENHA_USUARIO);
+                    "%s TEXT NOT NULL, " + //Coluna NOME_USUARIO
+                    "%s TEXT NOT NULL)", //Coluna SENHA_USUARIO
+            PedidosMobileContract.TABLE_USUARIO, PedidosMobileContract.Columns._ID_USUARIO,
+            PedidosMobileContract.Columns.NOME_USUARIO,
+            PedidosMobileContract.Columns.SENHA_USUARIO);
 
 
     private static DBHelper instance;

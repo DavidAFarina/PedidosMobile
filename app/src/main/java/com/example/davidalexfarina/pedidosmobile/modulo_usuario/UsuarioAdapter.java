@@ -51,14 +51,16 @@ public class UsuarioAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        View view = LayoutInflater.from(context).inflate(R.layout.adapter_listprodutos, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.adapter_usuario, parent, false);
 
-        EditText edtNomeUsuario = view.findViewById(R.id.edtLoginUsuario);
-        EditText edtSenhaUsuario = view.findViewById(R.id.edtSenhaUsuario);
+        TextView txtLogin = view.findViewById(R.id.txtLoginUsuario);
+        TextView txtSenha = view.findViewById(R.id.txtSenhaUsuario);
         final Usuario usuario = usuarios.get(position);
-
-        edtNomeUsuario.setText(usuario.getNome_usuario());
-        edtSenhaUsuario.setText(usuario.getSenha_usuario());
+        System.out.println("*************    Chegou a no getView do usuario *****************************************");
+        //System.out.println(edtLogin.getText());
+        System.out.println("*******************************************************");
+        txtLogin.setText(usuario.getNome_usuario());
+        txtSenha.setText(usuario.getSenha_usuario());
 
         return view;
     }
