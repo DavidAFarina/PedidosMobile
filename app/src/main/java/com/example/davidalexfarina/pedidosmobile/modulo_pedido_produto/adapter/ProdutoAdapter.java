@@ -46,7 +46,7 @@ public class ProdutoAdapter extends BaseAdapter{
 
     @Override
     public long getItemId(int position) {
-        return produtos.get(position).getId();
+        return produtos.get(position).getId_produto_pedido();
     }
 
     @Override

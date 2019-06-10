@@ -35,4 +35,6 @@
     <string name="definirTamanho">Favor selecione o tamanho.</string>
     <string name="pedidoCancel">Pedido Cancelado.</string>
     <string name="defenirTamanho">Definição</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Remover</string>//Botão Cancelar do ListaDialog
 </resources>

@@ -60,11 +60,12 @@
 
 
         <Button
-            android:id="@+id/btnConsultarFatura"
+            android:id="@+id/btnCadastrarUsuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Consultar Fatura"
-            android:textSize="10sp" />
+            android:text="Cadastro de usuário"
+            android:textSize="10sp"
+            android:onClick="cadastroUsuario"/>
 
         <Button
             android:id="@+id/btnConferirPedidos"
@@ -75,11 +76,12 @@
             android:onClick="conferirPedidos"/>
 
         <Button
-            android:id="@+id/btnFecharFatura"
+            android:id="@+id/btnListarUsuarios"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fechar Fatura"
-            android:textSize="10sp"/>
+            android:text="Listar Usuários"
+            android:textSize="10sp"
+            android:onClick="listarUsuarios"/>
     </LinearLayout>
 
     <LinearLayout

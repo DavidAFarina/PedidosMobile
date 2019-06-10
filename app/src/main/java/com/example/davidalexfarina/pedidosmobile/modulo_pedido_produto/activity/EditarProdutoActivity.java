@@ -108,7 +108,7 @@ public class EditarProdutoActivity extends AppCompatActivity {
                 if (produto == null) {
                     Produto produto = new Produto(mesa, garcom, nome, valor, qtd, valorTotal, observacao);
                     produtoDAO.save(produto);
-                    msg = "Produto gravado com ID = " + produto.getId();
+                    msg = "Produto gravado com ID = " + produto.getId_produto_pedido();
 
                 } else {
                     produto.setMesa(mesa);
@@ -119,7 +119,7 @@ public class EditarProdutoActivity extends AppCompatActivity {
                     produto.setValorTotal(valor * qtd);
                     produto.setObservacao(observacao);
                     produtoDAO.update(produto);
-                    msg = "Produto atualizado com ID = " + produto.getId();
+                    msg = "Produto atualizado com ID = " + produto.getId_produto_pedido();
                 }
 
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();

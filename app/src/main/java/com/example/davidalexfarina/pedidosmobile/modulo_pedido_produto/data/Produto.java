@@ -3,7 +3,7 @@ package com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data;
 import java.io.Serializable;
 
 public class Produto implements Serializable {
-    private int id;
+    private int id_produto_pedido;
     private int mesa;
     private String garcom;
     private String nome;
@@ -13,8 +13,8 @@ public class Produto implements Serializable {
     private String observacao;
 
 
-    public Produto(int id, int mesa, String garcom, String nome, double valor, int quantidade, double valorTotal, String observacao) {
-        this.id = id;
+    public Produto(int id_produto_pedido, int mesa, String garcom, String nome, double valor, int quantidade, double valorTotal, String observacao) {
+        this.id_produto_pedido = id_produto_pedido;
         this.mesa = mesa;
         this.garcom = garcom;
         this.nome = nome;
@@ -34,11 +34,11 @@ public class Produto implements Serializable {
         this.observacao = observacao;
     }
 
-    public int getId() {
-        return id;
+    public int getId_produto_pedido() {
+        return id_produto_pedido;
     }
-    public void setId(int id) {
-        this.id = id;
+    public void setId_produto_pedido(int id_produto_pedido) {
+        this.id_produto_pedido = id_produto_pedido;
     }
 
     public int getMesa(){ return mesa; }

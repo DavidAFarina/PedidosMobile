@@ -49,7 +49,7 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actions, menu);
+        getMenuInflater().inflate(R.menu.action_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

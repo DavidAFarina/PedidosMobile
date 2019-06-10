@@ -14,15 +14,14 @@ import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.adapter.BebidasAdapters;
 import com.example.davidalexfarina.pedidosmobile.adapter.PizzasAdapters;
 import com.example.davidalexfarina.pedidosmobile.adapter.PorcoesAdapters;
-import com.example.davidalexfarina.pedidosmobile.dialog.LoginDialog;
 import com.example.davidalexfarina.pedidosmobile.dialog.TamanhoDialog;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.EditarProdutoActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.SolicitacaoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
+import com.example.davidalexfarina.pedidosmobile.modulo_usuario.EditarUsuarioActivity;
+import com.example.davidalexfarina.pedidosmobile.modulo_usuario.UsuariosActivity;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -31,6 +30,7 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
     private Button btnPorcoes;
     private Button btnBebidas;
     private Button btnConferirPedidos;
+    private Button btnCadastrarUsuario;
     private int listaCarregada = 1; //Variavel utilizada para validar a lista atual que esta selecionada e será utilizada no click do item da lista..
     private TextView txtMesaAutal; //Variavel que recebe recebera o numero da mesa que foi selecionada no onclick da tela acticity_mesas
     private TextView txtNomeGarcom; //Variavel que recebe recebera o nome do uruario que se autenticou e registrou o pedido
@@ -61,6 +61,7 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         btnPorcoes = (Button) findViewById(R.id.btnPorcoes);
         btnBebidas = (Button) findViewById(R.id.btnBebidas);
         Button btnConferirPedidos = (Button) findViewById(R.id.btnConferirPedidos);
+        Button btnCadastrarUsuario = (Button) findViewById(R.id.btnCadastrarUsuario);
 
         //Teste dentro do onCreate
         TextView txtMesaAutal = findViewById(R.id.txtMesaAutal);
@@ -181,6 +182,14 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         intent.putExtras(parametros);
         startActivity(intent);
 
+    }
+    public void cadastroUsuario(View view){
+        Intent intent = new Intent(this, EditarUsuarioActivity.class);
+        startActivity(intent);
+    }
+    public void listarUsuarios(View view){
+        Intent intent = new Intent(this, UsuariosActivity.class);
+        startActivity(intent);
     }
 
 }

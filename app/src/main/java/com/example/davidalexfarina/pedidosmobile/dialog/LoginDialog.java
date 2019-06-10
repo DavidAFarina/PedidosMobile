@@ -16,8 +16,7 @@ import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.activity.MainActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
-import com.example.davidalexfarina.pedidosmobile.modulo_autenticacao_usuario.ControllerUsuario;
-import com.example.davidalexfarina.pedidosmobile.modulo_autenticacao_usuario.Usuario;
+
 
 public class LoginDialog extends AppCompatDialogFragment implements DialogInterface.OnClickListener {
 

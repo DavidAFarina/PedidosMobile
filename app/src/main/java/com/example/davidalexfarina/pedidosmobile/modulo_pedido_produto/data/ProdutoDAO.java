@@ -31,19 +31,19 @@ public class ProdutoDAO {
     public List<Produto> list() {
 
         String[] columns = {
-                ProdutosContract.Columns._ID,
-                ProdutosContract.Columns.MESA,
-                ProdutosContract.Columns.GARCOM,
-                ProdutosContract.Columns.NOME,
-                ProdutosContract.Columns.VALOR,
-                ProdutosContract.Columns.QUANTIDADE,
-                ProdutosContract.Columns.VALOR_TOTAL,
-                ProdutosContract.Columns.OBSERVACAO
+                PedidosMobileContract.Columns._ID_PRODUTO_PEDIDO,
+                PedidosMobileContract.Columns.MESA,
+                PedidosMobileContract.Columns.GARCOM,
+                PedidosMobileContract.Columns.NOME,
+                PedidosMobileContract.Columns.VALOR,
+                PedidosMobileContract.Columns.QUANTIDADE,
+                PedidosMobileContract.Columns.VALOR_TOTAL,
+                PedidosMobileContract.Columns.OBSERVACAO
         };
 
         List<Produto> produtos = new ArrayList<>();
 //essa codigo carrega todos os pedidos
-       /* try (Cursor c = db.query(ProdutosContract.TABLE_NAME, columns, null, null, null, null, ProdutosContract.Columns.NOME)) {
+       /* try (Cursor c = db.query(PedidosMobileContract.TABLE_PRODUTO_PEDIDO, columns, null, null, null, null, PedidosMobileContract.Columns.NOME)) {
             if (c.moveToFirst()) {
                 do {
                     Produto p = ProdutoDAO.fromCursor(c);
@@ -67,44 +67,44 @@ public class ProdutoDAO {
     }
 
     private static Produto fromCursor(Cursor c) {
-        int id = c.getInt(c.getColumnIndex(ProdutosContract.Columns._ID));
-        int mesa = (int) c.getInt(c.getColumnIndex(ProdutosContract.Columns.MESA));
-        String garcom = c.getString(c.getColumnIndex(ProdutosContract.Columns.GARCOM));
-        String nome = c.getString(c.getColumnIndex(ProdutosContract.Columns.NOME));
-        double valor = c.getDouble(c.getColumnIndex(ProdutosContract.Columns.VALOR));
-        int quantidade = (int) c.getInt(c.getColumnIndex(ProdutosContract.Columns.QUANTIDADE));
-        double valorTotal = c.getDouble(c.getColumnIndex(ProdutosContract.Columns.VALOR_TOTAL));
-        String observacao = c.getString(c.getColumnIndex(ProdutosContract.Columns.OBSERVACAO));
-        return new Produto(id, mesa, garcom, nome, valor, quantidade, valorTotal, observacao);
+        int id_produto_pedido = c.getInt(c.getColumnIndex(PedidosMobileContract.Columns._ID_PRODUTO_PEDIDO));
+        int mesa = (int) c.getInt(c.getColumnIndex(PedidosMobileContract.Columns.MESA));
+        String garcom = c.getString(c.getColumnIndex(PedidosMobileContract.Columns.GARCOM));
+        String nome = c.getString(c.getColumnIndex(PedidosMobileContract.Columns.NOME));
+        double valor = c.getDouble(c.getColumnIndex(PedidosMobileContract.Columns.VALOR));
+        int quantidade = (int) c.getInt(c.getColumnIndex(PedidosMobileContract.Columns.QUANTIDADE));
+        double valorTotal = c.getDouble(c.getColumnIndex(PedidosMobileContract.Columns.VALOR_TOTAL));
+        String observacao = c.getString(c.getColumnIndex(PedidosMobileContract.Columns.OBSERVACAO));
+        return new Produto(id_produto_pedido, mesa, garcom, nome, valor, quantidade, valorTotal, observacao);
     }
 
     public void save(Produto produto) {
         ContentValues values = new ContentValues();
-        values.put(ProdutosContract.Columns.MESA, produto.getMesa());
-        values.put(ProdutosContract.Columns.GARCOM, produto.getGarcom());
-        values.put(ProdutosContract.Columns.NOME, produto.getNome());
-        values.put(ProdutosContract.Columns.VALOR, produto.getValor());
-        values.put(ProdutosContract.Columns.QUANTIDADE, produto.getQuantidade());
-        values.put(ProdutosContract.Columns.VALOR_TOTAL, produto.getValorTotal());
-        values.put(ProdutosContract.Columns.OBSERVACAO, produto.getObservacao());
-        long id = db.insert(ProdutosContract.TABLE_NAME, null, values);
-        produto.setId((int) id);
+        values.put(PedidosMobileContract.Columns.MESA, produto.getMesa());
+        values.put(PedidosMobileContract.Columns.GARCOM, produto.getGarcom());
+        values.put(PedidosMobileContract.Columns.NOME, produto.getNome());
+        values.put(PedidosMobileContract.Columns.VALOR, produto.getValor());
+        values.put(PedidosMobileContract.Columns.QUANTIDADE, produto.getQuantidade());
+        values.put(PedidosMobileContract.Columns.VALOR_TOTAL, produto.getValorTotal());
+        values.put(PedidosMobileContract.Columns.OBSERVACAO, produto.getObservacao());
+        long id = db.insert(PedidosMobileContract.TABLE_PRODUTO_PEDIDO, null, values);
+        produto.setId_produto_pedido((int) id);
     }
 
     public void update(Produto produto) {
         ContentValues values = new ContentValues();
-        values.put(ProdutosContract.Columns.MESA, produto.getMesa());
-        values.put(ProdutosContract.Columns.GARCOM, produto.getGarcom());
-        values.put(ProdutosContract.Columns.NOME, produto.getNome());
-        values.put(ProdutosContract.Columns.VALOR, produto.getValor());
-        values.put(ProdutosContract.Columns.QUANTIDADE, produto.getQuantidade());
-        values.put(ProdutosContract.Columns.VALOR_TOTAL, produto.getValorTotal());
-        values.put(ProdutosContract.Columns.OBSERVACAO, produto.getObservacao());
-        db.update(ProdutosContract.TABLE_NAME, values, ProdutosContract.Columns._ID + " = ?", new String[]{ String.valueOf(produto.getId()) });
+        values.put(PedidosMobileContract.Columns.MESA, produto.getMesa());
+        values.put(PedidosMobileContract.Columns.GARCOM, produto.getGarcom());
+        values.put(PedidosMobileContract.Columns.NOME, produto.getNome());
+        values.put(PedidosMobileContract.Columns.VALOR, produto.getValor());
+        values.put(PedidosMobileContract.Columns.QUANTIDADE, produto.getQuantidade());
+        values.put(PedidosMobileContract.Columns.VALOR_TOTAL, produto.getValorTotal());
+        values.put(PedidosMobileContract.Columns.OBSERVACAO, produto.getObservacao());
+        db.update(PedidosMobileContract.TABLE_PRODUTO_PEDIDO, values, PedidosMobileContract.Columns._ID_PRODUTO_PEDIDO + " = ?", new String[]{ String.valueOf(produto.getId_produto_pedido()) });
     }
 
     public void delete(Produto produto) {
-        db.delete(ProdutosContract.TABLE_NAME, ProdutosContract.Columns._ID + " = ?", new String[]{ String.valueOf(produto.getId()) });
+        db.delete(PedidosMobileContract.TABLE_PRODUTO_PEDIDO, PedidosMobileContract.Columns._ID_PRODUTO_PEDIDO + " = ?", new String[]{ String.valueOf(produto.getId_produto_pedido()) });
     }
     public int consultaPedidoMesa(String mesa){
         numeroMesa = Integer.valueOf(mesa);
@@ -118,14 +118,14 @@ public class ProdutoDAO {
 
 
         String[] columns = {
-                ProdutosContract.Columns._ID,
-                ProdutosContract.Columns.MESA,
-                ProdutosContract.Columns.GARCOM,
-                ProdutosContract.Columns.NOME,
-                ProdutosContract.Columns.VALOR,
-                ProdutosContract.Columns.QUANTIDADE,
-                ProdutosContract.Columns.VALOR_TOTAL,
-                ProdutosContract.Columns.OBSERVACAO
+                PedidosMobileContract.Columns._ID_PRODUTO_PEDIDO,
+                PedidosMobileContract.Columns.MESA,
+                PedidosMobileContract.Columns.GARCOM,
+                PedidosMobileContract.Columns.NOME,
+                PedidosMobileContract.Columns.VALOR,
+                PedidosMobileContract.Columns.QUANTIDADE,
+                PedidosMobileContract.Columns.VALOR_TOTAL,
+                PedidosMobileContract.Columns.OBSERVACAO
         };
         Cursor fatura = db.rawQuery("SELECT SUM(valorTotal) FROM produto WHERE MESA= "+numeroMesa, null);
 

@@ -4,13 +4,15 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.davidalexfarina.pedidosmobile.modulo_usuario.UsuarioContract;
+
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final String DB_NAME = "produtosdb";
+    public static final String DB_NAME = "bancoPedidosMobile"/*"produtosdb"*/;
     public static final int DB_VERSION = 1;
 
-    private static final String SQL_DROP = "DROP TABLE IF EXISTS " + ProdutosContract.TABLE_NAME;
-    private static final String SQL_CREATE = String.format(
+    private static final String SQL_DROP_PRODUTO_PEDIDO = "DROP TABLE IF EXISTS " + PedidosMobileContract.TABLE_PRODUTO_PEDIDO;
+    private static final String SQL_CREATE_PRODUTO_PEDIDO = String.format(
             "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " + //Coluna ID
                     "%s INTEGER NOT NULL, " + //Coluna MESA
                     "%s TEXT NOT NULL, " + //Coluna GARCOM
@@ -19,9 +21,19 @@ public class DBHelper extends SQLiteOpenHelper {
                     "%s INTEGER NOT NULL, " + //Coluna QUANTIDADE
                     "%s DOUBLE NOT NULL, " + //Coluna VALOR_TOTAL
                     "%s TEXT NOT NULL)", //Coluna OBSERVACAO
-            ProdutosContract.TABLE_NAME, ProdutosContract.Columns._ID, ProdutosContract.Columns.MESA, ProdutosContract.Columns.GARCOM,
-            ProdutosContract.Columns.NOME, ProdutosContract.Columns.VALOR, ProdutosContract.Columns.QUANTIDADE,
-            ProdutosContract.Columns.VALOR_TOTAL, ProdutosContract.Columns.OBSERVACAO);
+            PedidosMobileContract.TABLE_PRODUTO_PEDIDO, PedidosMobileContract.Columns._ID_PRODUTO_PEDIDO, PedidosMobileContract.Columns.MESA, PedidosMobileContract.Columns.GARCOM,
+            PedidosMobileContract.Columns.NOME, PedidosMobileContract.Columns.VALOR, PedidosMobileContract.Columns.QUANTIDADE,
+            PedidosMobileContract.Columns.VALOR_TOTAL, PedidosMobileContract.Columns.OBSERVACAO);
+
+
+    private static final String SQL_DROP_USUARIO = "DROP TABLE IF EXISTS " + UsuarioContract.TABLE_USUARIO;
+    private static final String SQL_CREATE_USUARIO = String.format(
+            "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " + //Coluna ID
+                    "%s TEXT NOT NULL, " + //Coluna GARCOM
+                    "%s TEXT NOT NULL, ", //Coluna NOME
+            UsuarioContract.TABLE_USUARIO, UsuarioContract.Columns._ID_USUARIO,
+            UsuarioContract.Columns.NOME_USUARIO,
+            UsuarioContract.Columns.SENHA_USUARIO);
 
 
     private static DBHelper instance;
@@ -40,8 +52,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_DROP);
-        db.execSQL(SQL_CREATE);
+        db.execSQL(SQL_DROP_PRODUTO_PEDIDO);
+        db.execSQL(SQL_CREATE_PRODUTO_PEDIDO);
+        db.execSQL(SQL_DROP_USUARIO);
+        db.execSQL(SQL_CREATE_USUARIO);
     }
 
     @Override
