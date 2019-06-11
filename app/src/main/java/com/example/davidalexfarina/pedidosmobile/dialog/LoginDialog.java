@@ -52,10 +52,10 @@ public class LoginDialog extends AppCompatDialogFragment implements DialogInterf
 
 
             if(login.equals("admin")&&senha.equals("admin")){
-                Bundle parametro_garcom = new Bundle();
-                parametro_garcom.putString("paramNome", edtLogin.getText().toString());
+                Bundle parametros = new Bundle();
+                parametros.putString("usuarioApp", edtLogin.getText().toString());
                 Intent intent = new Intent(getActivity(), MesasActivity.class);
-                intent.putExtras(parametro_garcom);
+                intent.putExtras(parametros);
                 startActivity(intent);
 
 

@@ -3,6 +3,8 @@ package com.example.davidalexfarina.pedidosmobile.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,8 +20,6 @@ import com.example.davidalexfarina.pedidosmobile.dialog.TamanhoDialog;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.EditarProdutoActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.SolicitacaoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
-import com.example.davidalexfarina.pedidosmobile.modulo_usuario.EditarUsuarioActivity;
-import com.example.davidalexfarina.pedidosmobile.modulo_usuario.UsuariosActivity;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -36,7 +36,8 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
     private TextView txtNomeGarcom; //Variavel que recebe recebera o nome do uruario que se autenticou e registrou o pedido
     private TextView txtFatura;
     private  int mesa;
-    private String ngarcom;
+    private String numeroMesa;
+    private String usuarioApp;
     private String tamanho = "teste";//Variavel que recebe do dialog o tamanho selecionado
     private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("PT","BR"));
     private ProdutoDAO produtoDAO;
@@ -70,17 +71,17 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         Intent intent = getIntent();
         Bundle parametros = intent.getExtras();
 
-        String numeroMesa = parametros.getString("numeroMesa");
-        String garcom = parametros.getString("garcom");
+        numeroMesa = parametros.getString("numeroMesa");
+        usuarioApp  = parametros.getString("usuarioApp");
 
         txtMesaAutal.setText(numeroMesa);
-        txtNomeGarcom.setText(garcom);
+        txtNomeGarcom.setText(usuarioApp);
 
         Bundle parametroTamanho = intent.getExtras();
         String tamanho = parametroTamanho.getString("paramTamanho");
 
       mesa = Integer.parseInt(txtMesaAutal.getText().toString());
-      ngarcom = txtNomeGarcom.getText().toString();
+      usuarioApp = txtNomeGarcom.getText().toString();
 
         /*Toast.makeText(this,"tamanho que retornou do dialog "+tamanho, Toast.LENGTH_LONG).show();*/
         //teste para calcular a fatura
@@ -89,9 +90,38 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         /*String vlrFatura = String.valueOf(produtoDAO.consultaFaturaMesa(String.valueOf(mesa)));*/
         double vlrFatura = Double.parseDouble(produtoDAO.consultaFaturaMesa(String.valueOf(mesa)));
 
-        Toast.makeText(this,"Fatura: "+ vlrFatura, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"Fatura: "+ vlrFatura, Toast.LENGTH_LONG).show();
         txtFatura.setText(nf.format(vlrFatura));
         }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        /*getMenuInflater().inflate(R.menu.action_menu, menu);*/
+        getMenuInflater().inflate(R.menu.context_menu_retornar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_mode_close_button) {
+            //Toast.makeText(this, "Fechar essa tela e ir para MesasActivity", Toast.LENGTH_LONG).show();
+            Bundle parametros = new Bundle();
+            parametros.putString("usuarioApp", usuarioApp);
+            parametros.putString("numeroMesa", numeroMesa);
+            Intent intent = new Intent(this, MesasActivity.class);
+
+            intent.putExtras(parametros);
+
+            startActivity(intent);
+
+            /*
+            Intent intent = new Intent(getApplicationContext(), MesasActivity.class);
+            startActivity(intent);*/
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 
     @Override
@@ -99,14 +129,14 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         //Toast.makeText(this,"Ainda precisa ser implementado esse método onItemClick ", Toast.LENGTH_LONG).show();
         if(listaCarregada == 1){
             PizzaActivity pizzaActivity = (PizzaActivity) parent.getItemAtPosition(position);
-            Toast.makeText(this,"Pizza " + (position+1) + ": "
-                    + pizzaActivity.nomePizza, Toast.LENGTH_SHORT).show();
+           /* Toast.makeText(this,"Pizza " + (position+1) + ": "
+                    + pizzaActivity.nomePizza, Toast.LENGTH_SHORT).show();*/
 
 ///////////////////////////////////////////
             TamanhoDialog tamanhoDialog = new TamanhoDialog();
             Bundle data = new Bundle();
             data.putString("paramMesa", String.valueOf(mesa));
-            data.putString("paramGarcom", String.valueOf(ngarcom));
+            data.putString("paramGarcom", String.valueOf(usuarioApp));
             data.putString("paramNome", pizzaActivity.nomePizza);
             data.putString("valorP", String.valueOf(pizzaActivity.valor_p));
             data.putString("valorM", String.valueOf(pizzaActivity.valor_m));
@@ -122,11 +152,11 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         }
         if(listaCarregada == 2){
             PorcaoActivity porcaoActivity = (PorcaoActivity) parent.getItemAtPosition(position);
-            Toast.makeText(this,"Porção " + (position+1) + ": "
-                    + porcaoActivity.nomePorcao, Toast.LENGTH_SHORT).show();
+           /* Toast.makeText(this,"Porção " + (position+1) + ": "
+                    + porcaoActivity.nomePorcao, Toast.LENGTH_SHORT).show();*/
             Bundle parametroProduto= new Bundle();
             parametroProduto.putString("paramMesa", String.valueOf(mesa));
-            parametroProduto.putString("paramGarcom", ngarcom);
+            parametroProduto.putString("paramGarcom", usuarioApp);
             parametroProduto.putString("paramNome", porcaoActivity.nomePorcao);
             parametroProduto.putString("paramValor", String.valueOf(porcaoActivity.valor));
             Intent intent = new Intent(PedidoDaMesaActivity.this, EditarProdutoActivity.class);
@@ -135,15 +165,15 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         }
         if(listaCarregada == 3){
             BebidaActivity bebidaActivity = (BebidaActivity) parent.getItemAtPosition(position);
-            Toast.makeText(this,"Bebida " + (position+1) + ": "
-                    + bebidaActivity.nomeBebida, Toast.LENGTH_SHORT).show();
+           /* Toast.makeText(this,"Bebida " + (position+1) + ": "
+                    + bebidaActivity.nomeBebida, Toast.LENGTH_SHORT).show();*/
 
             //Intent intent = new Intent(PedidoDaMesaActivity.this, SolicitacaoDaMesaActivity.class);
             //startActivity(intent);
 
             Bundle parametroProduto= new Bundle();
             parametroProduto.putString("paramMesa", String.valueOf(mesa));
-            parametroProduto.putString("paramGarcom", ngarcom);
+            parametroProduto.putString("paramGarcom", usuarioApp);
             parametroProduto.putString("paramNome", bebidaActivity.nomeBebida);
             parametroProduto.putString("paramValor", String.valueOf(bebidaActivity.valor));
             Intent intent = new Intent(PedidoDaMesaActivity.this, EditarProdutoActivity.class);
@@ -178,18 +208,18 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
     public void conferirPedidos(View view){
         Bundle parametros = new Bundle();
         parametros.putString("numeroMesa", String.valueOf(mesa));
+        parametros.putString("usuarioApp", String.valueOf(usuarioApp));
         Intent intent = new Intent(PedidoDaMesaActivity.this, SolicitacaoDaMesaActivity.class);
         intent.putExtras(parametros);
         startActivity(intent);
 
     }
-    public void cadastroUsuario(View view){
-        Intent intent = new Intent(this, EditarUsuarioActivity.class);
-        startActivity(intent);
+
+    public void imprimirFatura(View view){
+        Toast.makeText(this,"Implementar esse metodo para imprimir", Toast.LENGTH_LONG).show();
     }
-    public void listarUsuarios(View view){
-        Intent intent = new Intent(this, UsuariosActivity.class);
-        startActivity(intent);
+    public void fecharFatura(View view){
+        Toast.makeText(this,"Implementar esse metodo para chamar outra tela listando os itens da fatura, valor total e formas de pagamento disponiveis.", Toast.LENGTH_LONG).show();
     }
 
 }

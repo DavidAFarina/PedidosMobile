@@ -3,6 +3,7 @@ package com.example.davidalexfarina.pedidosmobile.modulo_usuario;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,20 +11,23 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.example.davidalexfarina.pedidosmobile.R;
-import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.EditarProdutoActivity;
+import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Usuario;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.UsuarioDAO;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.dialog.DeleteUsuarioDialog;
 
 import java.util.List;
 
-public class UsuariosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, DeleteUsuarioDialog.OnDeleteListener{
+public class UsuariosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, DeleteUsuarioDialog.OnDeleteListener, ActionMode.Callback{
 
     private ListView listaUsuario;
     private UsuarioAdapter usuarioAdapter;
     private UsuarioDAO usuarioDAO;
     private static final int REQ_EDIT = 100;
 
+    private boolean actionModeActive;
+    int pos;//guarda a posição clicadano ListView
+    private String usuarioApp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,21 +40,36 @@ public class UsuariosActivity extends AppCompatActivity implements AdapterView.O
         listaUsuario.setOnItemLongClickListener(this);
         usuarioDAO = UsuarioDAO.getInstance(this);
         updateList();
+
+        Intent intent = getIntent();
+        Bundle parametros = intent.getExtras();
+
+        usuarioApp = parametros.getString("usuarioApp");
+        //Toast.makeText(this, "Nome: "+ usuarioApp, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.action_menu, menu);
+        getMenuInflater().inflate(R.menu.context_menu_retornar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_add) {
-            Toast.makeText(this, "Adicionar usuário", Toast.LENGTH_SHORT).show();
+        if (item.getItemId() == R.id.action_mode_close_button) {
+            //Toast.makeText(this, "Fechar essa tela e ir para MesasActivity", Toast.LENGTH_SHORT).show();
+            Bundle parametros = new Bundle();
+            parametros.putString("usuarioApp", usuarioApp);
+            Intent intent = new Intent(this,MesasActivity.class);
 
-            Intent intent = new Intent(getApplicationContext(), EditarProdutoActivity.class);
-            startActivityForResult(intent, REQ_EDIT);
+            intent.putExtras(parametros);
+
+            startActivity(intent);
+
+            /*
+            Intent intent = new Intent(getApplicationContext(), MesasActivity.class);
+            startActivity(intent);*/
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -72,9 +91,16 @@ public class UsuariosActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(getApplicationContext(), EditarUsuarioActivity.class);
+        if(!actionModeActive){
+            startActionMode(this);
+            pos = position; //atribui a posição a variavel pos que sera utilizada por outros métodos
+        }
+        return;
+
+
+        /*Intent intent = new Intent(getApplicationContext(), EditarUsuarioActivity.class);
         intent.putExtra("usuario", usuarioAdapter.getItem(position));
-        startActivityForResult(intent, REQ_EDIT);
+        startActivityForResult(intent, REQ_EDIT);*/
     }
 
     @Override
@@ -94,4 +120,40 @@ public class UsuariosActivity extends AppCompatActivity implements AdapterView.O
         updateList();
     }
 
+    @Override
+    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        getMenuInflater().inflate(R.menu.context_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        return false;
+    }
+
+    @Override
+    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+        if (item.getItemId() == R.id.act_edit) {
+
+            Intent intent = new Intent(getApplicationContext(), EditarUsuarioActivity.class);
+            intent.putExtra("usuario", usuarioAdapter.getItem(pos));
+            startActivityForResult(intent, REQ_EDIT);
+           // mode.finish();
+        }
+        else if(item.getItemId() == R.id.act_delete){//verifica se a opção foi clicado
+            Usuario usuario = usuarioAdapter.getItem(pos);
+
+            DeleteUsuarioDialog deleteUsuarioDialog = new DeleteUsuarioDialog();
+            deleteUsuarioDialog.setUsuario(usuario);
+            deleteUsuarioDialog.show(getSupportFragmentManager(), "deleteUsuarioDialog");// Chamar o método de remover o item clicado passando a posição a ser removida
+            //mode.finish();
+        }
+        mode.finish();
+        return true;
+    }
+
+    @Override
+    public void onDestroyActionMode(ActionMode mode) {
+        actionModeActive = false;
+    }
 }

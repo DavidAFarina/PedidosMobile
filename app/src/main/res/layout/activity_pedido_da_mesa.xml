@@ -60,28 +60,28 @@
 
 
         <Button
-            android:id="@+id/btnCadastrarUsuario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cadastro de usuário"
-            android:textSize="10sp"
-            android:onClick="cadastroUsuario"/>
-
-        <Button
             android:id="@+id/btnConferirPedidos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Conferir Pedido"
+            android:text="Conferir Pedidos"
             android:textSize="10sp"
             android:onClick="conferirPedidos"/>
 
         <Button
-            android:id="@+id/btnListarUsuarios"
+            android:id="@+id/btnFecharFatura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Listar Usuários"
+            android:text="Fechar Fatura"
             android:textSize="10sp"
-            android:onClick="listarUsuarios"/>
+            android:onClick="fecharFatura"/>
+
+        <Button
+            android:id="@+id/btnImprimir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Imprimir Fatura"
+            android:textSize="10sp"
+            android:onClick="imprimirFatura"/>
     </LinearLayout>
 
     <LinearLayout
