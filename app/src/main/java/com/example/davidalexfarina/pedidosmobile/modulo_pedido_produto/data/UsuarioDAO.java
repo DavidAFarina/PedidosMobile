@@ -102,4 +102,30 @@ public class UsuarioDAO {
         db.delete(PedidosMobileContract.TABLE_USUARIO, PedidosMobileContract.Columns._ID_USUARIO + " = ?", new String[]{String.valueOf(usuario.getId_usuario())});
     }
 
+    public boolean validaUsuario(String login, String senha){
+        boolean autenticado = false;
+        String[] columns = {
+                PedidosMobileContract.Columns._ID_USUARIO,
+                PedidosMobileContract.Columns.NOME_USUARIO,
+                PedidosMobileContract.Columns.SENHA_USUARIO
+        };
+
+        Cursor valida = db.rawQuery("SELECT NOME_USUARIO, SENHA_USUARIO FROM usuario WHERE nome_usuario=? AND senha_usuario=?", new String[]{login.toString(), senha.toString()});
+        String  user;
+        if (valida.getCount() > 0)
+        {
+            valida.moveToFirst();
+            user = valida.getString(0);
+            if (user.equals(login)&&senha.equals(senha)){
+                autenticado=true;
+            }
+
+            System.out.println("*************  teste de autenticação de usuario  *****************************************");
+            System.out.println(user);
+            System.out.println("*******************************************************");
+
+        }
+        return autenticado;
+    }
+
 }

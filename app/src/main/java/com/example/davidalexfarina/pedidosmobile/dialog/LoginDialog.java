@@ -13,14 +13,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.davidalexfarina.pedidosmobile.R;
-import com.example.davidalexfarina.pedidosmobile.activity.MainActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
-import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
+import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.UsuarioDAO;
 
 
 public class LoginDialog extends AppCompatDialogFragment implements DialogInterface.OnClickListener {
 
-
+    private UsuarioDAO usuarioDAO;
     private EditText edtLogin;
     private EditText edtSenha;
 
@@ -45,24 +44,37 @@ public class LoginDialog extends AppCompatDialogFragment implements DialogInterf
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-
+        boolean autenticado = false;//variavel de validação
         if(which == DialogInterface.BUTTON_POSITIVE){
             String login = edtLogin.getText().toString();
             String senha = edtSenha.getText().toString();
 
+    /////////////////autenticacao de usuário///////////////////////
+            usuarioDAO = UsuarioDAO.getInstance(this.getContext());
+            usuarioDAO.validaUsuario(login, senha);
+            //Toast.makeText(getActivity(), "Usuário retorno "+usuarioDAO.validaUsuario(login, senha), Toast.LENGTH_SHORT).show();
+            autenticado = usuarioDAO.validaUsuario(login, senha);
+    ///////////////// autenticacaoo de usuário///////////////////////
 
-            if(login.equals("admin")&&senha.equals("admin")){
+            if(login.equals("desen")&&senha.equals("d4v1d")){//usuário de recuperação de acesso
                 Bundle parametros = new Bundle();
                 parametros.putString("usuarioApp", edtLogin.getText().toString());
                 Intent intent = new Intent(getActivity(), MesasActivity.class);
                 intent.putExtras(parametros);
                 startActivity(intent);
 
-
-               // Intent intent = new Intent(getActivity(), MesasActivity.class);
-               // startActivity(intent);
+               //Intent intent = new Intent(getActivity(), MesasActivity.class);
+               //startActivity(intent);
                 Toast.makeText(getActivity(),"Bem Vindo "+edtLogin.getText(), Toast.LENGTH_LONG).show();
                 //Toast.makeText(getActivity(), R.string.loginOK, Toast.LENGTH_LONG).show();
+
+            }else if(autenticado == true){
+                Toast.makeText(getActivity(),"Bem Vindo "+edtLogin.getText(), Toast.LENGTH_LONG).show();
+                Bundle parametros = new Bundle();
+                parametros.putString("usuarioApp", edtLogin.getText().toString());
+                Intent intent = new Intent(getActivity(), MesasActivity.class);
+                intent.putExtras(parametros);
+                startActivity(intent);
 
             }else{
                 Toast.makeText(getActivity(), R.string.loginFail, Toast.LENGTH_SHORT).show();

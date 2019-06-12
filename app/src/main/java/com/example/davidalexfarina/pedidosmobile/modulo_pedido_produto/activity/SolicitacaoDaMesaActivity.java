@@ -148,7 +148,7 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
             Intent intent = new Intent(getApplicationContext(), EditarProdutoActivity.class);
             intent.putExtra("produto", adapter.getItem(pos));
             startActivityForResult(intent, REQ_EDIT);
-            //mode.finish();
+            mode.finish();
         }
         else if(item.getItemId() == R.id.act_delete){//verifica se a opção foi clicado
             Produto produto = adapter.getItem(pos);
@@ -156,10 +156,10 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
             DeleteDialog dialog = new DeleteDialog();
             dialog.setProduto(produto);
             dialog.show(getSupportFragmentManager(), "deleteDialog");
-            //mode.finish();
+            mode.finish();
             return true;
         }
-        mode.finish();
+        //mode.finish();
         return true;
     }
 
