@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.davidalexfarina.pedidosmobile.R;
+import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
@@ -109,6 +110,14 @@ public class EditarProdutoActivity extends AppCompatActivity {
                     Produto produto = new Produto(mesa, garcom, nome, valor, qtd, valorTotal, observacao);
                     produtoDAO.save(produto);
                     msg = "Produto gravado com ID = " + produto.getId_produto_pedido();
+                    Bundle parametros = new Bundle();
+                    parametros.putString("usuarioApp", garcom);
+                    parametros.putString("numeroMesa", String.valueOf(mesa));
+                    Intent intent = new Intent(this, PedidoDaMesaActivity.class);
+
+                    intent.putExtras(parametros);
+
+                    startActivity(intent);
 
                 } else {
                     produto.setMesa(mesa);
@@ -120,6 +129,14 @@ public class EditarProdutoActivity extends AppCompatActivity {
                     produto.setObservacao(observacao);
                     produtoDAO.update(produto);
                     msg = "Produto atualizado com ID = " + produto.getId_produto_pedido();
+                    Bundle parametros = new Bundle();
+                    parametros.putString("usuarioApp", garcom);
+                    parametros.putString("numeroMesa", String.valueOf(mesa));
+                    Intent intent = new Intent(this, PedidoDaMesaActivity.class);
+
+                    intent.putExtras(parametros);
+
+                    startActivity(intent);
                 }
 
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
