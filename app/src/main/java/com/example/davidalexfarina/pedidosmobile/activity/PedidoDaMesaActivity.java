@@ -17,6 +17,7 @@ import com.example.davidalexfarina.pedidosmobile.adapter.BebidasAdapters;
 import com.example.davidalexfarina.pedidosmobile.adapter.PizzasAdapters;
 import com.example.davidalexfarina.pedidosmobile.adapter.PorcoesAdapters;
 import com.example.davidalexfarina.pedidosmobile.dialog.TamanhoDialog;
+import com.example.davidalexfarina.pedidosmobile.modulo_imprimir_fatura.PdfCreatorActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.EditarProdutoActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.SolicitacaoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
@@ -39,6 +40,7 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
     private String numeroMesa;
     private String usuarioApp;
     private String tamanho = "teste";//Variavel que recebe do dialog o tamanho selecionado
+    private double vlrFatura;
     private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("PT","BR"));
     private ProdutoDAO produtoDAO;
     @Override
@@ -88,11 +90,11 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         produtoDAO = ProdutoDAO.getInstance(this);
         produtoDAO.consultaFaturaMesa(String.valueOf(mesa));
         /*String vlrFatura = String.valueOf(produtoDAO.consultaFaturaMesa(String.valueOf(mesa)));*/
-        double vlrFatura = Double.parseDouble(produtoDAO.consultaFaturaMesa(String.valueOf(mesa)));
+        vlrFatura = Double.parseDouble(produtoDAO.consultaFaturaMesa(String.valueOf(mesa)));
 
         //Toast.makeText(this,"Fatura: "+ vlrFatura, Toast.LENGTH_LONG).show();
         txtFatura.setText(nf.format(vlrFatura));
-        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -215,11 +217,20 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
 
     }
 
-    public void imprimirFatura(View view){
-        Toast.makeText(this,"Implementar esse metodo para imprimir", Toast.LENGTH_LONG).show();
+    public void imprimirFatura(View view) {
+        //////////////////////Parametros enviados para PdfCreatorActivity///////////////////////////
+        Toast.makeText(this, "Implementar esse metodo para imprimir", Toast.LENGTH_LONG).show();
+        Bundle parametros = new Bundle();
+        parametros.putString("usuarioApp", usuarioApp);
+        parametros.putString("numeroMesa", numeroMesa);
+        parametros.putString("vlrFatura", nf.format(vlrFatura));
+        Intent intent = new Intent(this, PdfCreatorActivity.class);
+
+        intent.putExtras(parametros);
+
+        startActivity(intent);
     }
     public void fecharFatura(View view){
         Toast.makeText(this,"Implementar esse metodo para chamar outra tela listando os itens da fatura, valor total e formas de pagamento disponiveis.", Toast.LENGTH_LONG).show();
     }
-
 }

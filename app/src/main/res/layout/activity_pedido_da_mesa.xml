@@ -79,9 +79,10 @@
             android:id="@+id/btnImprimir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Imprimir Fatura"
+            android:text="Gerar PDF"
             android:textSize="10sp"
             android:onClick="imprimirFatura"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -145,4 +146,5 @@
             style="?android:attr/textAppearanceMedium"/>
 
     </LinearLayout>
+
 </LinearLayout>

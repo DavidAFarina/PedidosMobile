@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,22 +15,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modulo_usuario.EditarUsuarioActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".modulo_usuario.UsuariosActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.MainActivity" android:screenOrientation="portrait">
+        <activity android:name=".modulo_imprimir_fatura.PdfCreatorActivity" />
+        <activity
+            android:name=".modulo_usuario.EditarUsuarioActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modulo_usuario.UsuariosActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MesasActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.PedidoDaMesaActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.MesasActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PedidoDaMesaActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".BebidasAdapter" />
         <activity android:name=".PorcaoAdapters" />
         <activity android:name=".adapter.ListaPedidoConfirmadoAdapters" />
-        <activity android:name=".modulo_pedido_produto.activity.SolicitacaoDaMesaActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".modulo_pedido_produto.activity.EditarProdutoActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".modulo_pedido_produto.activity.SolicitacaoDaMesaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modulo_pedido_produto.activity.EditarProdutoActivity"
+            android:screenOrientation="portrait" />
     </application>
-//android:screenOrientation="portrait" --desativa o modo paissagem
+
 </manifest>
