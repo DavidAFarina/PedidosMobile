@@ -82,8 +82,8 @@ public class PdfCreatorActivity extends AppCompatActivity {
         ////////////////////////////////////////////////////
 
         mContentEditText.setText("Fatura da Mesa: "+numeroMesa +
-                "\nAtendente: "+usuarioApp +
-                "\nValort Total: " +vlrFatura+
+                "\nAtendente responsavel: "+usuarioApp +
+                "\nValor Total: " +vlrFatura+
                 "\nDescrição dos pedidos: "+
                 "\nPedido: "+"--------"+
                 "Valor unitario: "+"--------"+
@@ -169,6 +169,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
         document.close();
         previewPdf();
+        Toast.makeText(this, pdfFile.toString()+"\nSalvo em :"+docsFolder, Toast.LENGTH_LONG).show();
 
     }
 

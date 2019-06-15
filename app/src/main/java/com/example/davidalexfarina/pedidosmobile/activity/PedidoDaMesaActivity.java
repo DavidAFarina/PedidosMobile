@@ -219,7 +219,7 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
 
     public void imprimirFatura(View view) {
         //////////////////////Parametros enviados para PdfCreatorActivity///////////////////////////
-        Toast.makeText(this, "Implementar esse metodo para imprimir", Toast.LENGTH_LONG).show();
+
         Bundle parametros = new Bundle();
         parametros.putString("usuarioApp", usuarioApp);
         parametros.putString("numeroMesa", numeroMesa);
@@ -229,6 +229,7 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         intent.putExtras(parametros);
 
         startActivity(intent);
+        Toast.makeText(this, "Ainda precisa de ajustes", Toast.LENGTH_LONG).show();
     }
     public void fecharFatura(View view){
         Toast.makeText(this,"Implementar esse metodo para chamar outra tela listando os itens da fatura, valor total e formas de pagamento disponiveis.", Toast.LENGTH_LONG).show();
