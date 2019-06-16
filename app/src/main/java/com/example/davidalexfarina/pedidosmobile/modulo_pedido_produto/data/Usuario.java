@@ -14,9 +14,12 @@ public class Usuario implements Serializable{
         this.senha_usuario = senha_usuario;
     }
 
+
+
     public Usuario(String nome_usuario, String senha_usuario) {
         this.nome_usuario = nome_usuario;
         this.senha_usuario = senha_usuario;
+
     }
 
     public int getId_usuario() {

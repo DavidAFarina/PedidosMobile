@@ -1,4 +1,4 @@
-package com.example.davidalexfarina.pedidosmobile.modulo_imprimir_fatura;
+package com.example.davidalexfarina.pedidosmobile.modulo_financeiro.gerar_pdf;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,11 +8,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +27,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.NumberFormat;
-import java.util.List;
 import java.util.Locale;
 
 import com.example.davidalexfarina.pedidosmobile.R;

@@ -17,7 +17,8 @@ import com.example.davidalexfarina.pedidosmobile.adapter.BebidasAdapters;
 import com.example.davidalexfarina.pedidosmobile.adapter.PizzasAdapters;
 import com.example.davidalexfarina.pedidosmobile.adapter.PorcoesAdapters;
 import com.example.davidalexfarina.pedidosmobile.dialog.TamanhoDialog;
-import com.example.davidalexfarina.pedidosmobile.modulo_imprimir_fatura.PdfCreatorActivity;
+import com.example.davidalexfarina.pedidosmobile.modulo_financeiro.dialog_pagamento.FormaDePagamentoDialog;
+import com.example.davidalexfarina.pedidosmobile.modulo_financeiro.gerar_pdf.PdfCreatorActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.EditarProdutoActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.SolicitacaoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
@@ -232,6 +233,14 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         Toast.makeText(this, "Ainda precisa de ajustes", Toast.LENGTH_LONG).show();
     }
     public void fecharFatura(View view){
-        Toast.makeText(this,"Implementar esse metodo para chamar outra tela listando os itens da fatura, valor total e formas de pagamento disponiveis.", Toast.LENGTH_LONG).show();
+        //////////////////////Parametros enviados para FormaDePagamentoDialog///////////////////////////
+        FormaDePagamentoDialog formaDePagamentoDialog = new FormaDePagamentoDialog();
+        Bundle data = new Bundle();
+        data.putString("numeroMesa", String.valueOf(mesa));
+        data.putString("usuarioApp", String.valueOf(usuarioApp));
+        data.putString("vlrFatura", nf.format(vlrFatura));
+        formaDePagamentoDialog.setArguments(data);
+        formaDePagamentoDialog.show(getSupportFragmentManager(),"formaDePagamentoDialog");
+
     }
 }

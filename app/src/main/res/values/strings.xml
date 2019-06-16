@@ -37,5 +37,7 @@
     <string name="defenirTamanho">Definição</string>
     <string name="edit">Editar</string>
     <string name="delete">Remover</string>
-    <string name="close">Fechar</string>//Botão Cancelar do ListaDialog
+    <string name="close">Fechar</string>
+    <string name="titlePagamento">Pagamento</string>
+    <string name="pagamentoCancel">Pagamento Cancelado.</string>//Botão Cancelar do ListaDialog
 </resources>

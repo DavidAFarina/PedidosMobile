@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -61,6 +62,7 @@ public class UsuarioAdapter extends BaseAdapter {
         System.out.println("*******************************************************");
         txtLogin.setText(usuario.getNome_usuario());
         txtSenha.setText(usuario.getSenha_usuario());
+
 
         return view;
     }

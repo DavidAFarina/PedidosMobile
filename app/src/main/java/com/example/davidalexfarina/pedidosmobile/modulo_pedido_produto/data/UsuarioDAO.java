@@ -33,6 +33,7 @@ public class UsuarioDAO {
                 PedidosMobileContract.Columns._ID_USUARIO,
                 PedidosMobileContract.Columns.NOME_USUARIO,
                 PedidosMobileContract.Columns.SENHA_USUARIO
+
         };
 
         List<Usuario> usuarios = new ArrayList<>();
@@ -87,6 +88,7 @@ public class UsuarioDAO {
         ContentValues values = new ContentValues();
         values.put(PedidosMobileContract.Columns.NOME_USUARIO, usuario.getNome_usuario());
         values.put(PedidosMobileContract.Columns.SENHA_USUARIO, usuario.getSenha_usuario());
+
         long id = db.insert(PedidosMobileContract.TABLE_USUARIO, null, values);
         usuario.setId_usuario((int) id);
     }
@@ -95,6 +97,7 @@ public class UsuarioDAO {
         ContentValues values = new ContentValues();
         values.put(PedidosMobileContract.Columns.NOME_USUARIO, usuario.getNome_usuario());
         values.put(PedidosMobileContract.Columns.SENHA_USUARIO, usuario.getSenha_usuario());
+
         db.update(PedidosMobileContract.TABLE_USUARIO, values, PedidosMobileContract.Columns._ID_USUARIO + " = ?", new String[]{String.valueOf(usuario.getId_usuario())});
     }
 

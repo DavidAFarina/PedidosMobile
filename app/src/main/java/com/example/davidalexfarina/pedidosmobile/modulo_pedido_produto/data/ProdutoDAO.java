@@ -114,9 +114,6 @@ public class ProdutoDAO {
     public String consultaFaturaMesa(String mesa){
         numeroMesa = Integer.valueOf(mesa);
 
-       //Cursor fatura = db.rawQuery("SELECT 'VALOR_TOTAL' FROM produto WHERE MESA= "+numeroMesa, null);
-
-
         String[] columns = {
                 PedidosMobileContract.Columns._ID_PRODUTO_PEDIDO,
                 PedidosMobileContract.Columns.MESA,
@@ -130,24 +127,25 @@ public class ProdutoDAO {
         Cursor fatura = db.rawQuery("SELECT SUM(valorTotal) FROM produto WHERE MESA= "+numeroMesa, null);
 
 
-
         double  valorTotal = 0;
         int i = 0;
         if (fatura.getCount() > 0)
         {
             fatura.moveToFirst();
-
             valorTotal = fatura.getDouble(0);
 
                 System.out.println("*************    Soma do valor total  *****************************************");
                 System.out.println(valorTotal);
                 System.out.println("*******************************************************");
-
-
         }
 
         return String.valueOf(valorTotal);
     }
 
+    public void fecharFaturaMesa(String mesa){
+        numeroMesa = Integer.valueOf(mesa);
+        db.delete(PedidosMobileContract.TABLE_PRODUTO_PEDIDO, PedidosMobileContract.Columns.MESA + " = ?", new String[]{String.valueOf(numeroMesa)});
 
+        return ;
+    }
 }

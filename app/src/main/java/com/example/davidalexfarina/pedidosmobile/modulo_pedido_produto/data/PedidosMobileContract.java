@@ -20,5 +20,7 @@ public class PedidosMobileContract {
         public static final String _ID_USUARIO = "_id_usuario";
         public static final String NOME_USUARIO = "nome_usuario";
         public static final String SENHA_USUARIO = "senha_usuario";
+
+
     }
 }
