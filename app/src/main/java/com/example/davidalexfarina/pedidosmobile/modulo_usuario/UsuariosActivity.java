@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+
 import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Usuario;
@@ -122,7 +122,7 @@ public class UsuariosActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-        getMenuInflater().inflate(R.menu.context_menu, menu);
+        getMenuInflater().inflate(R.menu.context_menu_editar_excluir, menu);
         return true;
     }
 

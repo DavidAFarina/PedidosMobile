@@ -11,15 +11,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.example.davidalexfarina.pedidosmobile.R;
-import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.adapter.ProdutoAdapter;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
-import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Usuario;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.dialog.DeleteDialog;
-import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.dialog.DeleteUsuarioDialog;
-import com.example.davidalexfarina.pedidosmobile.modulo_usuario.EditarUsuarioActivity;
 
 import java.util.List;
 
@@ -132,7 +128,7 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
 
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-        getMenuInflater().inflate(R.menu.context_menu, menu);
+        getMenuInflater().inflate(R.menu.context_menu_editar_excluir, menu);
         return true;
     }
 

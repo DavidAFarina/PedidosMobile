@@ -5,16 +5,19 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
 import com.example.davidalexfarina.pedidosmobile.modulo_usuario.EditarUsuarioActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_usuario.UsuariosActivity;
 
-public class MesasActivity extends AppCompatActivity {
+public class MesasActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private Button btMesa1;
     private Button btMesa2;
     private Button btMesa3;
@@ -68,15 +71,11 @@ public class MesasActivity extends AppCompatActivity {
                //button.setBackgroundColor(0xFFFF0000);
                 button.setBackgroundColor(Color.rgb(193, 255, 193));
 
-
-
             }else{
               //  button.setTextColor(Color.RED);
                 //button.setBackgroundColor(Color.RED);
                //button.setBackgroundColor(0xFFFF0000);
                 button.setBackgroundColor(Color.rgb(255,160, 122));
-
-
             }
         }
 
@@ -124,6 +123,25 @@ public class MesasActivity extends AppCompatActivity {
         txtNomeGarcom.setText(usuarioApp);
         //usuarioApp = usuarioApp;//Variavel temporaria utilizada para guardar a string com o nome do garcom.
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        /*getMenuInflater().inflate(R.menu.action_menu, menu);*/
+        getMenuInflater().inflate(R.menu.context_menu_sair, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_mode_exit_button) {
+            Bundle parametros = new Bundle();
+            Intent intent = new Intent(this, MainActivity.class);
+
+            startActivity(intent);
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void cadastroUsuario(View view){
@@ -298,5 +316,10 @@ public class MesasActivity extends AppCompatActivity {
             intent.putExtras(parametros);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 }

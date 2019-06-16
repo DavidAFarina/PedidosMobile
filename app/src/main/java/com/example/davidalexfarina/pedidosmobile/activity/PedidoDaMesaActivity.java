@@ -149,9 +149,7 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
 
             //TamanhoDialog tamanhoDialog = new TamanhoDialog();
             tamanhoDialog.show(getSupportFragmentManager(),"tamanhoDialog");
-
             //Toast.makeText(this,"tamanho que retornou do dialog "+tamanho, Toast.LENGTH_LONG).show();
-
         }
         if(listaCarregada == 2){
             PorcaoActivity porcaoActivity = (PorcaoActivity) parent.getItemAtPosition(position);
