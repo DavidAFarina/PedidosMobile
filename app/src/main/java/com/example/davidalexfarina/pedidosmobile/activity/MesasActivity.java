@@ -1,6 +1,7 @@
 package com.example.davidalexfarina.pedidosmobile.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.davidalexfarina.pedidosmobile.R;
+import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
 import com.example.davidalexfarina.pedidosmobile.modulo_usuario.EditarUsuarioActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_usuario.UsuariosActivity;
 
@@ -39,14 +41,44 @@ public class MesasActivity extends AppCompatActivity {
     private Button btMesa24;
     private TextView txtNomeGarcom;
     private String usuarioApp;
+    private ProdutoDAO produtoDAO;
+    private int i; //Variavel para percorer o numero de mesas
 
+    private int btMesa;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mesas);
+        produtoDAO = ProdutoDAO.getInstance(this);
+        produtoDAO.consultaFaturaMesa(String.valueOf(i));
 
+        for(i =1;i<=24;i++){
+           // Toast.makeText(this,"teste: "+ produtoDAO.consultaFaturaMesa(String.valueOf(i)),Toast.LENGTH_SHORT).show();
+            String status = produtoDAO.consultaFaturaMesa(String.valueOf(i));
+            ///////////////////////////////Teste button
+            int id = getResources().getIdentifier("btMesa" + i, "id", getPackageName());
+            Button button = findViewById(id);
+
+            ///////////////////////
+            if(status.equals("0.0")){//Se o valor da fatura da mesa retornar = 0.o, então o status é considerado como livre
+              // button.setTextColor(Color.BLUE);
+               //button.setBackgroundColor(Color.BLUE);
+               //button.setBackgroundColor(0xFFFF0000);
+                button.setBackgroundColor(Color.rgb(193, 255, 193));
+
+
+
+            }else{
+              //  button.setTextColor(Color.RED);
+                //button.setBackgroundColor(Color.RED);
+               //button.setBackgroundColor(0xFFFF0000);
+                button.setBackgroundColor(Color.rgb(255,160, 122));
+
+
+            }
+        }
 
         Toast.makeText(this,"Selecione a mesa desejada",Toast.LENGTH_SHORT).show();
 

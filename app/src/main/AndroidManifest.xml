@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modulo_financeiro.gerar_pdf.PdfCreatorActivity" />
+        <activity android:name=".modulo_financeiro.gerar_pdf.PdfCreatorActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".modulo_usuario.EditarUsuarioActivity"
             android:screenOrientation="portrait" />
