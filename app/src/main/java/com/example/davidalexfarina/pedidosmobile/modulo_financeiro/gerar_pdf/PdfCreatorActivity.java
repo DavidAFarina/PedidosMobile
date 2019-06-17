@@ -17,11 +17,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.davidalexfarina.pedidosmobile.activity.MainActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
+import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.adapter.ProdutoAdapter;
+import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
+import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -32,6 +36,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import com.example.davidalexfarina.pedidosmobile.R;
@@ -46,6 +52,10 @@ public class PdfCreatorActivity extends AppCompatActivity {
     private String usuarioApp;
     private String vlrFatura;
     private static final NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("PT","BR"));
+    private ProdutoDAO produtoDAO;
+    private ListView lista;
+    private ProdutoAdapter adapter;
+    private String listaPedidos;
 
 
     @Override
@@ -78,19 +88,32 @@ public class PdfCreatorActivity extends AppCompatActivity {
         numeroMesa = parametros.getString("numeroMesa");
         usuarioApp = parametros.getString("usuarioApp");
         vlrFatura = parametros.getString("vlrFatura");
-        Toast.makeText(this, "As informação para gerar PDF\n" +
-                "Mesa: "+numeroMesa+"\nUzuário: " + usuarioApp + "\nFatura: "+vlrFatura, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "As informação para gerar PDF\n" +
+       //       "Mesa: "+numeroMesa+"\nUzuário: " + usuarioApp + "\nFatura: "+vlrFatura, Toast.LENGTH_SHORT).show();
 
         ////////////////////////////////////////////////////
+        lista = findViewById(R.id.lista);
+
+        produtoDAO = ProdutoDAO.getInstance(this);
+        produtoDAO.consultaPedidoMesa(numeroMesa);
+        List<Produto> produtos = produtoDAO.list();
+
+
+        for(int x=0;x<produtos.size();x++) {
+            listaPedidos = listaPedidos + ("\nPedido: " + produtos.get(x).getNome() +
+                    "\nValor Unitario: " + nf.format(produtos.get(x).getValor()) +
+                    "\nQuantidade: " + produtos.get(x).getQuantidade() +
+                    "\nValor Total: " + nf.format(produtos.get(x).getValorTotal()) +
+                    "\n----------------------------------------");
+        }
+
 
         mContentEditText.setText("Fatura da Mesa: "+numeroMesa +
                 "\nAtendente responsavel: "+usuarioApp +
                 "\nValor Total: " +vlrFatura+
-                "\nDescrição dos pedidos: "+
-                "\nPedido: "+"--------"+
-                "Valor unitario: "+"--------"+
-                "Quantidade: " + "--------"+
-                "Valor Total: "+"--------");
+                "\n----------------------------------------"+
+                "\nDescrição dos pedidos: "+listaPedidos.toString());
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

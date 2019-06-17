@@ -148,4 +148,29 @@ public class ProdutoDAO {
 
         return ;
     }
+    /*public List<Produto> pdfFaturaMesa(){
+
+        String[] columns = {
+                PedidosMobileContract.Columns._ID_PRODUTO_PEDIDO,
+                PedidosMobileContract.Columns.MESA,
+                PedidosMobileContract.Columns.GARCOM,
+                PedidosMobileContract.Columns.NOME,
+                PedidosMobileContract.Columns.VALOR,
+                PedidosMobileContract.Columns.QUANTIDADE,
+                PedidosMobileContract.Columns.VALOR_TOTAL,
+                PedidosMobileContract.Columns.OBSERVACAO
+        };
+
+        List<Produto> produtos = new ArrayList<>();
+//essa codigo carrega todos os pedidos
+        try (Cursor c = db.query(PedidosMobileContract.TABLE_PRODUTO_PEDIDO, columns, null, null, null, null, PedidosMobileContract.Columns.NOME)) {
+            if (c.moveToFirst()) {
+                do {
+                    Produto p = ProdutoDAO.fromCursor(c);
+                    produtos.add(p);
+                } while (c.moveToNext());
+            }
+            return produtos;
+        }
+    }*/
 }
