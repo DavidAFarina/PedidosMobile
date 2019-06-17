@@ -21,9 +21,11 @@ import com.example.davidalexfarina.pedidosmobile.modulo_financeiro.dialog_pagame
 import com.example.davidalexfarina.pedidosmobile.modulo_financeiro.gerar_pdf.PdfCreatorActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.EditarProdutoActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.SolicitacaoDaMesaActivity;
+import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
 
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
 
 public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -226,18 +228,24 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
     }
 
     public void imprimirFatura(View view) {
-        //////////////////////Parametros enviados para PdfCreatorActivity///////////////////////////
+        produtoDAO = ProdutoDAO.getInstance(this);
+        produtoDAO.consultaPedidoMesa(numeroMesa);
+        List<Produto> produtos = produtoDAO.list();
+        if(produtos.size()==0){
+            Toast.makeText(this, "Essa mesa não possui fatura.", Toast.LENGTH_LONG).show();
+        }else {
+            //////////////////////Parametros enviados para PdfCreatorActivity///////////////////////////
 
-        Bundle parametros = new Bundle();
-        parametros.putString("usuarioApp", usuarioApp);
-        parametros.putString("numeroMesa", numeroMesa);
-        parametros.putString("vlrFatura", nf.format(vlrFatura));
-        Intent intent = new Intent(this, PdfCreatorActivity.class);
+            Bundle parametros = new Bundle();
+            parametros.putString("usuarioApp", usuarioApp);
+            parametros.putString("numeroMesa", numeroMesa);
+            parametros.putString("vlrFatura", nf.format(vlrFatura));
+            Intent intent = new Intent(this, PdfCreatorActivity.class);
 
-        intent.putExtras(parametros);
+            intent.putExtras(parametros);
 
-        startActivity(intent);
-        Toast.makeText(this, "Ainda precisa de ajustes", Toast.LENGTH_LONG).show();
+            startActivity(intent);
+        }
     }
     public void fecharFatura(View view){
         //////////////////////Parametros enviados para FormaDePagamentoDialog///////////////////////////
@@ -247,7 +255,7 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         data.putString("usuarioApp", String.valueOf(usuarioApp));
         data.putString("vlrFatura", nf.format(vlrFatura));
         formaDePagamentoDialog.setArguments(data);
-        formaDePagamentoDialog.show(getSupportFragmentManager(),"formaDePagamentoDialog");
+        formaDePagamentoDialog.show(getSupportFragmentManager(), "formaDePagamentoDialog");
 
     }
 }

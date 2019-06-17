@@ -100,20 +100,25 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
 
         for(int x=0;x<produtos.size();x++) {
-            listaPedidos = listaPedidos + ("\nPedido: " + produtos.get(x).getNome() +
-                    "\nValor Unitario: " + nf.format(produtos.get(x).getValor()) +
-                    "\nQuantidade: " + produtos.get(x).getQuantidade() +
-                    "\nValor Total: " + nf.format(produtos.get(x).getValorTotal()) +
-                    "\n----------------------------------------");
+            listaPedidos = listaPedidos + (
+                    "\n| Pedido: " + produtos.get(x).getNome() +
+                    "\n| Valor Unitario: " + nf.format(produtos.get(x).getValor()) +
+                    "\n| Quantidade: " + produtos.get(x).getQuantidade() +
+                    "\n| Valor Total: " + nf.format(produtos.get(x).getValorTotal()) +
+                    "\n|-----------------------------------------------------------");
         }
 
 
-        mContentEditText.setText("Fatura da Mesa: "+numeroMesa +
-                "\nAtendente responsavel: "+usuarioApp +
-                "\nValor Total: " +vlrFatura+
-                "\n----------------------------------------"+
-                "\nDescrição dos pedidos: "+listaPedidos.toString());
-
+        mContentEditText.setText(
+                       "___________________________________"+
+                    "\n| Fatura da Mesa: "+numeroMesa +
+                    "\n| Atendente responsavel: "+usuarioApp +
+                    "\n|___________________________________|"+
+                    "\n| Descrição dos pedidos: "+
+                    "\n|___________________________________|"+
+                        listaPedidos.toString()+
+                    "\n| Fatura Total: " + vlrFatura +
+                    "\n|___________________________________|");
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

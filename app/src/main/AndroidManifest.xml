@@ -47,6 +47,7 @@
         <activity
             android:name=".modulo_pedido_produto.activity.EditarProdutoActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".modulo_financeiro.gerar_pdf.ViewPDFActivity"/>
     </application>
 
 </manifest>
