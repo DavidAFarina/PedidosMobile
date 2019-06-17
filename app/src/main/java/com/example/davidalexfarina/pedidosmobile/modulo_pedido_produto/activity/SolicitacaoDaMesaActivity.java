@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.example.davidalexfarina.pedidosmobile.R;
+import com.example.davidalexfarina.pedidosmobile.activity.MainActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.adapter.ProdutoAdapter;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
@@ -78,6 +79,15 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
             /*
             Intent intent = new Intent(getApplicationContext(), MesasActivity.class);
             startActivity(intent);*/
+            return true;
+        }
+        if (item.getItemId() == R.id.action_mode_exit_button) {
+            Bundle parametros = new Bundle();
+            Intent intent = new Intent(this, MainActivity.class);
+
+
+            startActivity(intent);
+
             return true;
         }
         return super.onOptionsItemSelected(item);

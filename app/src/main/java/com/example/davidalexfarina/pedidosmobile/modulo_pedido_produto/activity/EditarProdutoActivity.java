@@ -3,12 +3,15 @@ package com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.davidalexfarina.pedidosmobile.R;
+import com.example.davidalexfarina.pedidosmobile.activity.MainActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
@@ -83,6 +86,26 @@ public class EditarProdutoActivity extends AppCompatActivity {
             edtQuantidade.requestFocus();
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        /*getMenuInflater().inflate(R.menu.action_menu, menu);*/
+        getMenuInflater().inflate(R.menu.context_menu_sair, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_mode_exit_button) {
+            Bundle parametros = new Bundle();
+            Intent intent = new Intent(this, MainActivity.class);
+
+            startActivity(intent);
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     public void processar(View view) {
         if (edtQuantidade.getText().toString().equals("")) {

@@ -122,6 +122,15 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
             startActivity(intent);*/
             return true;
         }
+        if (item.getItemId() == R.id.action_mode_exit_button) {
+            Bundle parametros = new Bundle();
+            Intent intent = new Intent(this, MainActivity.class);
+
+
+            startActivity(intent);
+
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

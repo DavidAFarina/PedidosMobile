@@ -12,11 +12,16 @@ import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.davidalexfarina.pedidosmobile.activity.MainActivity;
+import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
+import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -87,6 +92,40 @@ public class PdfCreatorActivity extends AppCompatActivity {
                 "Quantidade: " + "--------"+
                 "Valor Total: "+"--------");
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        /*getMenuInflater().inflate(R.menu.action_menu, menu);*/
+        getMenuInflater().inflate(R.menu.context_menu_retornar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_mode_close_button) {
+            //Toast.makeText(this, "Fechar essa tela e ir para MesasActivity", Toast.LENGTH_LONG).show();
+            Bundle parametros = new Bundle();
+            parametros.putString("usuarioApp", usuarioApp);
+            parametros.putString("numeroMesa", numeroMesa);
+            Intent intent = new Intent(this, PedidoDaMesaActivity.class);
+
+            intent.putExtras(parametros);
+
+            startActivity(intent);
+
+            /*
+            Intent intent = new Intent(getApplicationContext(), MesasActivity.class);
+            startActivity(intent);*/
+            return true;
+        }
+        if (item.getItemId() == R.id.action_mode_exit_button) {
+            Bundle parametros = new Bundle();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void createPdfWrapper() throws FileNotFoundException,DocumentException{
 
         int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
