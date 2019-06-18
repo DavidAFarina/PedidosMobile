@@ -6,14 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".modulo_usuario.UsuariosActivity"
-    android:layout_marginHorizontal="5dp"
-    android:layout_marginVertical="15dp"
+    android:layout_margin="@dimen/margem"
     android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/borda_vermelha"
        android:textAlignment="center">
 
@@ -57,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#000000"
+                android:inputType="textPassword"
                 style="?android:attr/textAppearanceMedium" />
         </LinearLayout>
     </LinearLayout>

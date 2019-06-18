@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.example.davidalexfarina.pedidosmobile.activity.MainActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
+import com.example.davidalexfarina.pedidosmobile.modulo_financeiro.dialog_pagamento.FormaDePagamentoDialog;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.adapter.ProdutoAdapter;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
@@ -42,7 +44,7 @@ import java.util.Locale;
 
 import com.example.davidalexfarina.pedidosmobile.R;
 
-public class PdfCreatorActivity extends AppCompatActivity {
+public class PdfCreatorActivity extends AppCompatActivity  {
     private static final String TAG = "PdfCreatorActivity";
     private EditText  mContentEditText;
     private Button mCreateButton;
@@ -55,13 +57,14 @@ public class PdfCreatorActivity extends AppCompatActivity {
     private ProdutoDAO produtoDAO;
     private ListView lista;
     private ProdutoAdapter adapter;
-    private String listaPedidos;
+    private String listaPedidos="";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_creator);
+
 
         mContentEditText = (EditText) findViewById(R.id.edit_text_content);
         mCreateButton = (Button) findViewById(R.id.button_create);
@@ -119,7 +122,11 @@ public class PdfCreatorActivity extends AppCompatActivity {
                         listaPedidos.toString()+
                     "\n| Fatura Total: " + vlrFatura +
                     "\n|___________________________________|");
+       //mContentEditText.setEnabled(false);
+
     }
+
+/////////////////////////métodos do barra superior de menu - Context/////////////////////////////////////////////
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         /*getMenuInflater().inflate(R.menu.action_menu, menu);*/
@@ -153,7 +160,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+///////////////////////////////////////////////////////////
     private void createPdfWrapper() throws FileNotFoundException,DocumentException{
 
         int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -180,6 +187,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
             return;
         }else {
             createPdf();
+
         }
     }
     @Override
@@ -233,12 +241,20 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
         document.close();
         previewPdf();
-        Toast.makeText(this, pdfFile.toString()+"\nSalvo em :"+docsFolder, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, /*pdfFile.toString()*/"Fatura da mesa "+numeroMesa+"\nSalvo em no armazenamento interno na pasta DOCUMENTS"/*docsFolder*/, Toast.LENGTH_LONG).show();
+
+        Bundle parametros = new Bundle();
+        parametros.putString("usuarioApp", usuarioApp);
+        parametros.putString("numeroMesa", numeroMesa);
+        Intent intent = new Intent(this, PedidoDaMesaActivity.class);
+
+        intent.putExtras(parametros);
+
+        startActivity(intent);
 
     }
 
     private void previewPdf() {
-
 
         String pdf = mContentEditText.getText().toString();
         File file = Environment.getExternalStoragePublicDirectory("./DOCUMENTS");
@@ -274,6 +290,27 @@ public class PdfCreatorActivity extends AppCompatActivity {
             Toast.makeText(this,"Faça o download de um visualizador de PDF como o Adobe por exemplo",Toast.LENGTH_LONG).show();
         }*/
 
+    }
+
+    public void cancelarImpressao(View view) {
+        Bundle parametros = new Bundle();
+        parametros.putString("usuarioApp", usuarioApp);
+        parametros.putString("numeroMesa", numeroMesa);
+        Intent intent = new Intent(this, PedidoDaMesaActivity.class);
+
+        intent.putExtras(parametros);
+
+        startActivity(intent);
+    }
+    public void fecharFatura(View view) {
+        //////////////////////Parametros enviados para FormaDePagamentoDialog///////////////////////////
+        FormaDePagamentoDialog formaDePagamentoDialog = new FormaDePagamentoDialog();
+        Bundle data = new Bundle();
+        data.putString("numeroMesa", String.valueOf(numeroMesa));
+        data.putString("usuarioApp", String.valueOf(usuarioApp));
+        data.putString("vlrFatura", vlrFatura);
+        formaDePagamentoDialog.setArguments(data);
+        formaDePagamentoDialog.show(getSupportFragmentManager(), "formaDePagamentoDialog");
     }
 }
 

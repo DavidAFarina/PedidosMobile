@@ -143,6 +143,13 @@ public class MesasActivity extends AppCompatActivity implements AdapterView.OnIt
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onBackPressed() {
+        Bundle parametros = new Bundle();
+        Intent intent = new Intent(this, MainActivity.class);
+
+        startActivity(intent);
+    }
 
     public void cadastroUsuario(View view){
         Intent intent = new Intent(this, EditarUsuarioActivity.class);

@@ -132,7 +132,8 @@ public class EditarProdutoActivity extends AppCompatActivity {
                 if (produto == null) {
                     Produto produto = new Produto(mesa, garcom, nome, valor, qtd, valorTotal, observacao);
                     produtoDAO.save(produto);
-                    msg = "Produto gravado com ID = " + produto.getId_produto_pedido();
+                    //msg = "Produto gravado com ID = " + produto.getId_produto_pedido();
+                    msg = "Pedido realizado com sucesso.";
                     Bundle parametros = new Bundle();
                     parametros.putString("usuarioApp", garcom);
                     parametros.putString("numeroMesa", String.valueOf(mesa));
@@ -151,7 +152,8 @@ public class EditarProdutoActivity extends AppCompatActivity {
                     produto.setValorTotal(valor * qtd);
                     produto.setObservacao(observacao);
                     produtoDAO.update(produto);
-                    msg = "Produto atualizado com ID = " + produto.getId_produto_pedido();
+                    //msg = "Produto atualizado com ID = " + produto.getId_produto_pedido();
+                    msg = "Pedido atualizado com sucesso." ;
                     Bundle parametros = new Bundle();
                     parametros.putString("usuarioApp", garcom);
                     parametros.putString("numeroMesa", String.valueOf(mesa));
@@ -172,5 +174,15 @@ public class EditarProdutoActivity extends AppCompatActivity {
     public void cancelar(View view){
         setResult(RESULT_CANCELED);
         finish();
+    }
+    @Override
+    public void onBackPressed() {
+        Bundle parametros = new Bundle();
+        parametros.putString("usuarioApp", edtGarcom.getText().toString());
+        parametros.putString("numeroMesa", edtMesa.getText().toString());
+        Intent intent = new Intent(this, PedidoDaMesaActivity.class);
+
+        intent.putExtras(parametros);
+        startActivity(intent);
     }
 }

@@ -173,4 +173,14 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
     public void onDestroyActionMode(ActionMode mode) {
         actionModeActive = false;
     }
+    @Override
+    public void onBackPressed() {
+        Bundle parametros = new Bundle();
+        parametros.putString("usuarioApp", usuarioApp);
+        parametros.putString("numeroMesa", numeroMesa);
+        Intent intent = new Intent(this, PedidoDaMesaActivity.class);
+
+        intent.putExtras(parametros);
+        startActivity(intent);
+    }
 }

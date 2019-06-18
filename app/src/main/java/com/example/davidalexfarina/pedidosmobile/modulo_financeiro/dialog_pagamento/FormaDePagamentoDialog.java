@@ -74,7 +74,6 @@ public class FormaDePagamentoDialog extends AppCompatDialogFragment implements D
     @Override
     public void onClick(DialogInterface dialog, int which) {
 
-
         if(which == DialogInterface.BUTTON_POSITIVE){
 
             produtoDAO = ProdutoDAO.getInstance(this.getContext());
@@ -88,8 +87,8 @@ public class FormaDePagamentoDialog extends AppCompatDialogFragment implements D
 
             startActivity(intent);
 
+            Toast.makeText(getActivity(),"Fatura fechada.",Toast.LENGTH_SHORT).show();
 
-            Toast.makeText(getActivity(),R.string.btn_ok,Toast.LENGTH_SHORT).show();
         }
         else if(which == DialogInterface.BUTTON_NEGATIVE){
             Toast.makeText(getActivity(),R.string.pagamentoCancel,Toast.LENGTH_SHORT).show();

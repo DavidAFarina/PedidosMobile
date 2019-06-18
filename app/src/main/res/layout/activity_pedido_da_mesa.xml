@@ -53,33 +53,34 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        android:layout_gravity="center_horizontal">
 
 
         <Button
             android:id="@+id/btnConferirPedidos"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:text="Conferir Pedidos"
             android:textSize="10sp"
             android:onClick="conferirPedidos"/>
 
-        <Button
+       <!-- <Button
             android:id="@+id/btnFecharFatura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fechar Fatura"
             android:textSize="10sp"
-            android:onClick="fecharFatura"/>
+            android:onClick="fecharFatura"/>-->
 
         <Button
             android:id="@+id/btnImprimir"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="Gerar PDF"
+            android:text="Fatura"
             android:textSize="10sp"
             android:onClick="imprimirFatura"/>
 

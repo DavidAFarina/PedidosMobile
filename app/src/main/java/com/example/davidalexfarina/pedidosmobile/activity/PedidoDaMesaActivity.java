@@ -194,6 +194,16 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
 
         }
     }
+    @Override
+    public void onBackPressed() {
+        Bundle parametros = new Bundle();
+        parametros.putString("usuarioApp", usuarioApp);
+        parametros.putString("numeroMesa", numeroMesa);
+        Intent intent = new Intent(this, MesasActivity.class);
+
+        intent.putExtras(parametros);
+        startActivity(intent);
+    }
 
 
     public void abrirListaPizzas(View view){
@@ -227,6 +237,17 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
 
     }
 
+
+    public void fecharFatura(View view){
+        //////////////////////Parametros enviados para FormaDePagamentoDialog///////////////////////////
+        FormaDePagamentoDialog formaDePagamentoDialog = new FormaDePagamentoDialog();
+        Bundle data = new Bundle();
+        data.putString("numeroMesa", String.valueOf(mesa));
+        data.putString("usuarioApp", String.valueOf(usuarioApp));
+        data.putString("vlrFatura", nf.format(vlrFatura));
+        formaDePagamentoDialog.setArguments(data);
+        formaDePagamentoDialog.show(getSupportFragmentManager(), "formaDePagamentoDialog");
+    }
     public void imprimirFatura(View view) {
         produtoDAO = ProdutoDAO.getInstance(this);
         produtoDAO.consultaPedidoMesa(numeroMesa);
@@ -246,16 +267,5 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
 
             startActivity(intent);
         }
-    }
-    public void fecharFatura(View view){
-        //////////////////////Parametros enviados para FormaDePagamentoDialog///////////////////////////
-        FormaDePagamentoDialog formaDePagamentoDialog = new FormaDePagamentoDialog();
-        Bundle data = new Bundle();
-        data.putString("numeroMesa", String.valueOf(mesa));
-        data.putString("usuarioApp", String.valueOf(usuarioApp));
-        data.putString("vlrFatura", nf.format(vlrFatura));
-        formaDePagamentoDialog.setArguments(data);
-        formaDePagamentoDialog.show(getSupportFragmentManager(), "formaDePagamentoDialog");
-
     }
 }
