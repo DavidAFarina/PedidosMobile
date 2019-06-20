@@ -228,13 +228,18 @@ public class PedidoDaMesaActivity extends AppCompatActivity implements AdapterVi
         listaCarregada = 3;
     }
     public void conferirPedidos(View view){
-        Bundle parametros = new Bundle();
-        parametros.putString("numeroMesa", String.valueOf(mesa));
-        parametros.putString("usuarioApp", String.valueOf(usuarioApp));
-        Intent intent = new Intent(PedidoDaMesaActivity.this, SolicitacaoDaMesaActivity.class);
-        intent.putExtras(parametros);
-        startActivity(intent);
 
+        if (vlrFatura==0.0){
+            Toast.makeText(this, "A mesa "+numeroMesa+" não possui pedidos.", Toast.LENGTH_LONG).show();
+        }else{
+
+            Bundle parametros = new Bundle();
+            parametros.putString("numeroMesa", String.valueOf(mesa));
+            parametros.putString("usuarioApp", String.valueOf(usuarioApp));
+            Intent intent = new Intent(PedidoDaMesaActivity.this, SolicitacaoDaMesaActivity.class);
+            intent.putExtras(parametros);
+            startActivity(intent);
+        }
     }
 
 

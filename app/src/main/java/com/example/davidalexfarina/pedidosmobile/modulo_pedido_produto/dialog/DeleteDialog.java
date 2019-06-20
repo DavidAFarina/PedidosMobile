@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.SolicitacaoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
+import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
+import com.itextpdf.awt.geom.Line2D;
 
 public class DeleteDialog  extends AppCompatDialogFragment implements DialogInterface.OnClickListener {
 
@@ -19,7 +21,8 @@ public class DeleteDialog  extends AppCompatDialogFragment implements DialogInte
     private OnDeleteListener listener;
     private String usuarioApp;
     private String numeroMesa;
-
+    private double vlrFatura;
+    private ProdutoDAO produtoDAO;
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -41,7 +44,7 @@ public class DeleteDialog  extends AppCompatDialogFragment implements DialogInte
         numeroMesa = data.getString("numeroMesa");
         usuarioApp = data.getString("usuarioApp");
        //Toast.makeText(getActivity(), "Usuario "+usuarioApp, Toast.LENGTH_SHORT).show();
-
+//        produtoDAO.consultaFaturaMesa(numeroMesa);
         return builder.create();
     }
 
@@ -53,9 +56,20 @@ public class DeleteDialog  extends AppCompatDialogFragment implements DialogInte
             Bundle parametroProduto= new Bundle();
             parametroProduto.putString("numeroMesa", numeroMesa);
             parametroProduto.putString("usuarioApp", usuarioApp);
-            Intent intent = new Intent(getActivity(), SolicitacaoDaMesaActivity.class);
-            intent.putExtras(parametroProduto);
-            startActivity(intent);
+            produtoDAO = ProdutoDAO.getInstance(getContext());
+            vlrFatura = Double.parseDouble(produtoDAO.consultaFaturaMesa(numeroMesa));
+
+            if(vlrFatura == 0.0){
+                Toast.makeText(getActivity(), "A mesa: "+numeroMesa+ " não tem mais pedidos.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), PedidoDaMesaActivity.class);
+                intent.putExtras(parametroProduto);
+                startActivity(intent);
+            }else {
+
+                Intent intent = new Intent(getActivity(), SolicitacaoDaMesaActivity.class);
+                intent.putExtras(parametroProduto);
+                startActivity(intent);
+            }
         }
         if (which == DialogInterface.BUTTON_NEGATIVE && listener != null) {
 

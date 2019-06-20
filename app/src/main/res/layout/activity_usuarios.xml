@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".modulo_usuario.UsuariosActivity"
-    android:layout_margin="@dimen/margem"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/margem"
-    android:orientation="vertical">-->
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".modulo_pedido_produto.activity.EditarProdutoActivity"
     android:layout_margin="@dimen/margem">
 
     <ListView
@@ -26,10 +17,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:choiceMode="singleChoice">//Define quantas linhas podem ser selecionadas.
+
 
     </ListView>
-</android.support.constraint.ConstraintLayout>
-
-    <!--
-    </LinearLayout>-->
+</LinearLayout>

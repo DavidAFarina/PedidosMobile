@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:choiceMode="singleChoice">//Define quantas linhas podem ser selecionadas.
+        android:choiceMode="singleChoice">
 
     </ListView>
 

@@ -164,7 +164,6 @@ public class EditarProdutoActivity extends AppCompatActivity {
 
                     startActivity(intent);
                 }
-
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
                 setResult(RESULT_OK);
                 finish();
