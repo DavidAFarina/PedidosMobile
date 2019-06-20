@@ -3,16 +3,22 @@ package com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.widget.Toast;
 
+import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
+import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity.SolicitacaoDaMesaActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
 
 public class DeleteDialog  extends AppCompatDialogFragment implements DialogInterface.OnClickListener {
 
     private Produto produto;
     private OnDeleteListener listener;
+    private String usuarioApp;
+    private String numeroMesa;
 
     @Override
     public void onAttach(Activity activity) {
@@ -30,6 +36,12 @@ public class DeleteDialog  extends AppCompatDialogFragment implements DialogInte
         builder.setMessage("Deseja excluir o produto "  + produto.getNome() + "?");
         builder.setPositiveButton("Sim", this);
         builder.setNegativeButton("Não", this);
+
+        Bundle data = getArguments();
+        numeroMesa = data.getString("numeroMesa");
+        usuarioApp = data.getString("usuarioApp");
+       //Toast.makeText(getActivity(), "Usuario "+usuarioApp, Toast.LENGTH_SHORT).show();
+
         return builder.create();
     }
 
@@ -38,6 +50,21 @@ public class DeleteDialog  extends AppCompatDialogFragment implements DialogInte
     public void onClick(DialogInterface dialog, int which) {
         if (which == DialogInterface.BUTTON_POSITIVE && listener != null) {
             listener.onDelete(produto);
+            Bundle parametroProduto= new Bundle();
+            parametroProduto.putString("numeroMesa", numeroMesa);
+            parametroProduto.putString("usuarioApp", usuarioApp);
+            Intent intent = new Intent(getActivity(), SolicitacaoDaMesaActivity.class);
+            intent.putExtras(parametroProduto);
+            startActivity(intent);
+        }
+        if (which == DialogInterface.BUTTON_NEGATIVE && listener != null) {
+
+            Bundle parametroProduto= new Bundle();
+            parametroProduto.putString("numeroMesa", numeroMesa);
+            parametroProduto.putString("usuarioApp", usuarioApp);
+            Intent intent = new Intent(getActivity(), SolicitacaoDaMesaActivity.class);
+            intent.putExtras(parametroProduto);
+            startActivity(intent);
         }
     }
 

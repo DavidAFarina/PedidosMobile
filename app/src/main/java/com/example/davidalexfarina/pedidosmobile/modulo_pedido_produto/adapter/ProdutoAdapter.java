@@ -99,4 +99,5 @@ public class ProdutoAdapter extends BaseAdapter{
         this.produtos = produtos;
         notifyDataSetChanged();
     }
+
 }

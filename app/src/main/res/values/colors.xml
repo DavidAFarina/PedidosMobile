@@ -3,4 +3,7 @@
     <color name="colorPrimary">#8B0000</color>
     <color name="colorPrimaryDark">#1C1C1C</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="azul">#6EA6EC</color>
+    <color name="NavajoWhite1">#FFDEAD</color>
+
 </resources>

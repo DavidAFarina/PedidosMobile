@@ -157,7 +157,8 @@ public class EditarProdutoActivity extends AppCompatActivity {
                     Bundle parametros = new Bundle();
                     parametros.putString("usuarioApp", garcom);
                     parametros.putString("numeroMesa", String.valueOf(mesa));
-                    Intent intent = new Intent(this, PedidoDaMesaActivity.class);
+                    //Intent intent = new Intent(this, PedidoDaMesaActivity.class);
+                    Intent intent = new Intent(this, SolicitacaoDaMesaActivity.class);
 
                     intent.putExtras(parametros);
 
@@ -172,8 +173,14 @@ public class EditarProdutoActivity extends AppCompatActivity {
     }
 
     public void cancelar(View view){
-        setResult(RESULT_CANCELED);
-        finish();
+        /*setResult(RESULT_CANCELED);
+        finish();*/
+        Bundle parametros = new Bundle();
+        parametros.putString("usuarioApp", edtGarcom.getText().toString());
+        parametros.putString("numeroMesa", edtMesa.getText().toString());
+        Intent intent = new Intent(this, SolicitacaoDaMesaActivity.class);
+        intent.putExtras(parametros);
+        startActivity(intent);
     }
     @Override
     public void onBackPressed() {

@@ -1,6 +1,8 @@
 package com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ActionMode;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.activity.MainActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.PedidoDaMesaActivity;
+import com.example.davidalexfarina.pedidosmobile.dialog.TamanhoDialog;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.adapter.ProdutoAdapter;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
@@ -42,7 +45,7 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
         Bundle parametros = intent.getExtras();
         numeroMesa = parametros.getString("numeroMesa");
         usuarioApp = parametros.getString("usuarioApp");
-        Toast.makeText(this, "A carregar os pedidos da mesa: "+numeroMesa, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "A carregar os pedidos da mesa: "+numeroMesa, Toast.LENGTH_SHORT).show();
 
 
         lista = findViewById(R.id.lista);
@@ -150,7 +153,6 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
         if (item.getItemId() == R.id.act_edit) {
-
             Intent intent = new Intent(getApplicationContext(), EditarProdutoActivity.class);
             intent.putExtra("produto", adapter.getItem(pos));
             startActivityForResult(intent, REQ_EDIT);
@@ -159,10 +161,21 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
         else if(item.getItemId() == R.id.act_delete){//verifica se a opção foi clicado
             Produto produto = adapter.getItem(pos);
 
-            DeleteDialog dialog = new DeleteDialog();
+            /*DeleteDialog dialog = new DeleteDialog();
             dialog.setProduto(produto);
             dialog.show(getSupportFragmentManager(), "deleteDialog");
+            mode.finish();*/
+            ///////////////////////////////////////////
+            DeleteDialog deleteDialog = new DeleteDialog();
+            Bundle data = new Bundle();
+            data.putString("numeroMesa", String.valueOf(numeroMesa));
+            data.putString("usuarioApp", String.valueOf(usuarioApp));
+            deleteDialog.setArguments(data);
+////////////////////////////////////////
+            deleteDialog.setProduto(produto);
+            deleteDialog.show(getSupportFragmentManager(),"deleteDialog");
             mode.finish();
+
             return true;
         }
         //mode.finish();
@@ -171,6 +184,7 @@ public class SolicitacaoDaMesaActivity extends AppCompatActivity implements Adap
 
     @Override
     public void onDestroyActionMode(ActionMode mode) {
+
         actionModeActive = false;
     }
     @Override

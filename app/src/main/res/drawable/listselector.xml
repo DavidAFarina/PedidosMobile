@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:exitFadeDuration="@android:integer/config_mediumAnimTime">
+
+    <item android:drawable="@android:color/holo_green_light" android:state_pressed="true"/>
+    <item android:drawable="@android:color/holo_purple" android:state_selected="true"/>
+    <item android:drawable="@android:color/holo_purple" android:state_activated="true"/>
+
+    &lt;!&ndash; cor do fundo quando não seleccionada (cor por defeito) &ndash;&gt;
+    <item android:drawable="@android:color/holo_green_dark"/>
+</selector>-->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+android:exitFadeDuration="@android:integer/config_mediumAnimTime">
+
+    <item android:drawable="@android:color/holo_green_light" android:state_pressed="true"/>
+    <item android:drawable="@android:color/holo_purple" android:state_selected="true"/>
+        <!--<item android:drawable="@android:color/holo_purple" android:state_activated="true"/>-->
+    <item android:drawable="@color/NavajoWhite1" android:state_activated="true"/>
+   <!-- <item android:drawable="@color/azul" android:state_activated="true"/>-->
+</selector>
