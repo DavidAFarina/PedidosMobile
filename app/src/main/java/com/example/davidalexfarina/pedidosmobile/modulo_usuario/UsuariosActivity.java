@@ -133,7 +133,6 @@ public class UsuariosActivity extends AppCompatActivity implements AdapterView.O
             intent.putExtra("usuarioApp", usuarioApp);
             startActivityForResult(intent, REQ_EDIT);
             mode.finish();
-
         }
         else if(item.getItemId() == R.id.act_delete){//verifica se a opção foi clicado
 
