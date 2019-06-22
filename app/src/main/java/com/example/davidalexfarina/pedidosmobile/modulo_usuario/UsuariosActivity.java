@@ -88,7 +88,6 @@ public class UsuariosActivity extends AppCompatActivity implements AdapterView.O
         usuarioAdapter.setItems(usuarios);
     }
 
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if(!actionModeActive){
@@ -96,11 +95,6 @@ public class UsuariosActivity extends AppCompatActivity implements AdapterView.O
             pos = position; //atribui a posição a variavel pos que sera utilizada por outros métodos
         }
         return;
-
-
-        /*Intent intent = new Intent(getApplicationContext(), EditarUsuarioActivity.class);
-        intent.putExtra("usuario", usuarioAdapter.getItem(position));
-        startActivityForResult(intent, REQ_EDIT);*/
     }
 
     @Override
@@ -134,19 +128,30 @@ public class UsuariosActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
         if (item.getItemId() == R.id.act_edit) {
-
             Intent intent = new Intent(getApplicationContext(), EditarUsuarioActivity.class);
             intent.putExtra("usuario", usuarioAdapter.getItem(pos));
+            intent.putExtra("usuarioApp", usuarioApp);
             startActivityForResult(intent, REQ_EDIT);
-           // mode.finish();
+            mode.finish();
+
         }
         else if(item.getItemId() == R.id.act_delete){//verifica se a opção foi clicado
-            Usuario usuario = usuarioAdapter.getItem(pos);
 
-            DeleteUsuarioDialog deleteUsuarioDialog = new DeleteUsuarioDialog();
+            Usuario usuario = usuarioAdapter.getItem(pos);
+            ////////////////////Método salvo para caso de necessidade///////////////////////////////////////////////////////////
+            /*DeleteUsuarioDialog deleteUsuarioDialog = new DeleteUsuarioDialog();
             deleteUsuarioDialog.setUsuario(usuario);
             deleteUsuarioDialog.show(getSupportFragmentManager(), "deleteUsuarioDialog");// Chamar o método de remover o item clicado passando a posição a ser removida
-            //mode.finish();
+            mode.finish();*/
+            /////////////////////////////////////////////////////////////////////////////
+            DeleteUsuarioDialog deleteUsuarioDialog = new DeleteUsuarioDialog();
+            Bundle data = new Bundle();
+            data.putString("usuarioApp", String.valueOf(usuarioApp));
+            deleteUsuarioDialog.setArguments(data);
+////////////////////////////////////////
+            deleteUsuarioDialog.setUsuario(usuario);
+            deleteUsuarioDialog.show(getSupportFragmentManager(),"deleteDialog");
+            mode.finish();
         }
         mode.finish();
         return true;
@@ -155,5 +160,14 @@ public class UsuariosActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onDestroyActionMode(ActionMode mode) {
         actionModeActive = false;
+    }
+    @Override
+    public void onBackPressed() {
+        Bundle parametros = new Bundle();
+        parametros.putString("usuarioApp", usuarioApp);
+        Intent intent = new Intent(this, MesasActivity.class);
+        intent.putExtras(parametros);
+
+        startActivity(intent);
     }
 }

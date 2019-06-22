@@ -21,6 +21,8 @@ public class EditarUsuarioActivity extends AppCompatActivity {
     private Button btSalvarUsuario;
     private Usuario usuario;
     private UsuarioDAO usuarioDAO;
+    private String usuarioApp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,11 @@ public class EditarUsuarioActivity extends AppCompatActivity {
             edtLogin.requestFocus();
 
         }
+        Intent intent = getIntent();
+        Bundle parametros = intent.getExtras();
+
+        usuarioApp = parametros.getString("usuarioApp");
+        Toast.makeText(this, "Nome: "+ usuarioApp, Toast.LENGTH_SHORT).show();
     }
 
     public void processarUsuario(View view) {
@@ -66,13 +73,31 @@ public class EditarUsuarioActivity extends AppCompatActivity {
             }
 
            // Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-            setResult(RESULT_OK);
-            finish();
+            /*setResult(RESULT_OK);
+            finish();*/
+            Bundle parametros = new Bundle();
+            parametros.putString("usuarioApp", usuarioApp);
+            Intent intent = new Intent(this, UsuariosActivity.class);
+            intent.putExtras(parametros);
+            startActivity(intent);
         }
     }
 
     public void cancelar(View view) {
-        setResult(RESULT_CANCELED);
-        finish();
+        /*setResult(RESULT_CANCELED);
+        finish();*/
+        Bundle parametros = new Bundle();
+        parametros.putString("usuarioApp", usuarioApp);
+        Intent intent = new Intent(this, UsuariosActivity.class);
+        intent.putExtras(parametros);
+        startActivity(intent);
+    }
+    @Override
+    public void onBackPressed() {
+        Bundle parametros = new Bundle();
+        parametros.putString("usuarioApp", usuarioApp);
+        Intent intent = new Intent(this, UsuariosActivity.class);
+        intent.putExtras(parametros);
+        startActivity(intent);
     }
 }

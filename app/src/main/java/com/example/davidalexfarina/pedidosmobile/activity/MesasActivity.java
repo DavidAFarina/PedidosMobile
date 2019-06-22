@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.example.davidalexfarina.pedidosmobile.R;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.ProdutoDAO;
+import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.UsuarioDAO;
 import com.example.davidalexfarina.pedidosmobile.modulo_usuario.EditarUsuarioActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_usuario.UsuariosActivity;
 
@@ -44,6 +45,7 @@ public class MesasActivity extends AppCompatActivity implements AdapterView.OnIt
     private Button btMesa24;
     private TextView txtNomeGarcom;
     private String usuarioApp;
+    private UsuarioDAO usuarioDAO;
     private ProdutoDAO produtoDAO;
     private int i; //Variavel para percorer o numero de mesas
 
@@ -152,19 +154,28 @@ public class MesasActivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
     public void cadastroUsuario(View view){
-        Intent intent = new Intent(this, EditarUsuarioActivity.class);
+        Bundle parametros = new Bundle();
+        parametros.putString("usuarioApp", usuarioApp);
+        Intent intent = new Intent(this,EditarUsuarioActivity.class);
+
+        intent.putExtras(parametros);
         startActivity(intent);
     }
     public void listarUsuarios(View view){
-        Bundle parametros = new Bundle();
-        parametros.putString("usuarioApp", usuarioApp);
-        Intent intent = new Intent(this,UsuariosActivity.class);
+       usuarioDAO = UsuarioDAO.getInstance(this);
+        if(usuarioDAO.list().size()<1){
+            Toast.makeText(this,"Não há usuários para listar",Toast.LENGTH_SHORT).show();
+        }else{
+            Bundle parametros = new Bundle();
+            parametros.putString("usuarioApp", usuarioApp);
+            Intent intent = new Intent(this,UsuariosActivity.class);
 
-        intent.putExtras(parametros);
-
-        startActivity(intent);
+            intent.putExtras(parametros);
+            startActivity(intent);
        /* Intent intent = new Intent(this, UsuariosActivity.class);
         startActivity(intent);*/
+        }
+
     }
 
     public void abrirPedidosDaMesa(View view){
