@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.davidalexfarina.pedidosmobile.R;
+import com.example.davidalexfarina.pedidosmobile.activity.MainActivity;
 import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Usuario;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.UsuarioDAO;
@@ -72,6 +73,15 @@ public class UsuariosActivity extends AppCompatActivity implements AdapterView.O
             startActivity(intent);*/
             return true;
         }
+        if (item.getItemId() == R.id.action_mode_exit_button) {
+            Bundle parametros = new Bundle();
+            Intent intent = new Intent(this, MainActivity.class);
+
+
+            startActivity(intent);
+
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -101,10 +111,18 @@ public class UsuariosActivity extends AppCompatActivity implements AdapterView.O
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
         Usuario usuario = usuarioAdapter.getItem(position);
-
+/*
         DeleteUsuarioDialog deleteUsuarioDialog = new DeleteUsuarioDialog();
         deleteUsuarioDialog.setUsuario(usuario);
-        deleteUsuarioDialog.show(getSupportFragmentManager(), "deleteUsuarioDialog");
+        deleteUsuarioDialog.show(getSupportFragmentManager(), "deleteUsuarioDialog");*/
+        ////////////
+        DeleteUsuarioDialog deleteUsuarioDialog = new DeleteUsuarioDialog();
+        Bundle data = new Bundle();
+        data.putString("usuarioApp", String.valueOf(usuarioApp));
+        deleteUsuarioDialog.setArguments(data);
+////////////////////////////////////////
+        deleteUsuarioDialog.setUsuario(usuario);
+        deleteUsuarioDialog.show(getSupportFragmentManager(),"deleteUsuarioDialog");
         return true;
     }
 

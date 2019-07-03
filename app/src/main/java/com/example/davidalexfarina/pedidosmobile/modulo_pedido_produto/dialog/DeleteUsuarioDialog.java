@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.widget.Toast;
 
 import com.example.davidalexfarina.pedidosmobile.activity.MesasActivity;
 import com.example.davidalexfarina.pedidosmobile.modulo_pedido_produto.data.Produto;
@@ -40,6 +41,7 @@ public class DeleteUsuarioDialog extends AppCompatDialogFragment implements Dial
         Bundle data = getArguments();
         usuarioApp = data.getString("usuarioApp");
 
+
         return builder.create();
     }
 
@@ -47,9 +49,10 @@ public class DeleteUsuarioDialog extends AppCompatDialogFragment implements Dial
     @Override
     public void onClick(DialogInterface dialog, int which) {
         if (which == DialogInterface.BUTTON_POSITIVE && listener != null) {
-            listener.onDelete(usuario);
-            usuarioDAO = UsuarioDAO.getInstance(getContext());
-            if(usuarioDAO.list().size() <1){
+
+                listener.onDelete(usuario);
+                usuarioDAO = UsuarioDAO.getInstance(getContext());
+           if(usuarioDAO.list().size() <1){
                 Bundle parametros = new Bundle();
                 parametros.putString("usuarioApp", usuarioApp);
                 Intent intent = new Intent(getContext(), MesasActivity.class);
